@@ -1,11 +1,10 @@
 import React from 'react'
-import Calculator from './components/Calculator'
+import LandingPage from './components/LandingPage'
 
 const App = () => {
   return (
     <div>
-      <p>first commit</p>
-      <Calculator first={5} second={2}/>
+      <LandingPage />
     </div>
   )
 }
