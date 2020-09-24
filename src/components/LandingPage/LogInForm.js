@@ -1,6 +1,7 @@
 import React from 'react'
 import { Formik, Form } from 'formik'
-import { TextField } from '../FormField'
+
+import { FormikTextField } from '../FormField'
 
 const LogInForm = ({ submit }) => {
   return (
@@ -27,13 +28,13 @@ const LogInForm = ({ submit }) => {
       >
         {({ isValid, dirty }) => (
           <Form>
-            <TextField
+            <FormikTextField
               label="Email"
               name="email"
               type="text"
               placeholder="test@test.com"
             />
-            <TextField
+            <FormikTextField
               label="Password"
               name="password"
               type="password"

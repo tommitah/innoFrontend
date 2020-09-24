@@ -1,6 +1,6 @@
 import React from 'react'
 import { Formik, Form } from 'formik'
-import { TextField, SelectField } from '../FormField'
+import { FormikTextField, FormikSelectField } from '../FormField'
 
 
 const SignUpForm = ({ submit }) => {
@@ -50,31 +50,31 @@ const SignUpForm = ({ submit }) => {
       >
         {({ isValid, dirty }) => (
           <Form>
-            <TextField
+            <FormikTextField
               label="Name"
               name="name"
               type="text"
               placeholder="jarmo"
             />
-            <TextField
+            <FormikTextField
               label="Email"
               name="email"
               type="text"
               placeholder="test@test.com"
             />
-            <TextField
+            <FormikTextField
               label="Password"
               name="password"
               type="password"
               placeholder="jorma123"
             />
-            <TextField
+            <FormikTextField
               label="Password Again"
               name="passwordAgain"
               type="password"
               placeholder="jorma123"
             />
-            <SelectField
+            <FormikSelectField
               label="User"
               name="user"
               options={userOptions}
