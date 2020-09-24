@@ -1,44 +1,28 @@
 import React from 'react'
 import { useField } from 'formik'
-
+import PropTypes from 'prop-types'
 import { TextField } from '@material-ui/core'
 
 export const FormikTextField = ({ label, ...props }) => {
   const [field, meta] = useField(props)
+  const errorText = meta.touched && meta.error ? meta.error : ''
 
-  //viimenen tapa todennäköisesti paras
-
-  /*return (
-    <>
-      <label htmlFor={props.id || props.name}>{label}</label>
-      <input {...field} {...props} />
-      {meta.touched && meta.error ? (
-        <div style={{ color: 'red' }} className="error">{meta.error}</div>
-      ) : null}
-    </>
-  )*/
-  /*return (
-    <>
-      <Field
-        {...props}
-        label={label}
-        as={TextField}
-        error={meta.touched && meta.error}
-        helperText={<ErrorMessage name={props.name} />}
-      />
-    </>
-  )*/
   return (
-    <>
-      <TextField
-        {...field}
-        {...props}
-        label={label}
-        error={meta.touched && meta.error ? true : false}
-        helperText={meta.touched && meta.error ? meta.error : null}
-      />
-    </>
+    <TextField
+      {...field}
+      {...props}
+      label={label}
+      error={!!errorText}
+      helperText={errorText}
+    />
   )
+}
+
+FormikTextField.propTypes = {
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['text', 'password']).isRequired,
+  placeholder: PropTypes.string.isRequired,
 }
 
 export const FormikSelectField = ({ options, label, ...props }) => {
