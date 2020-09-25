@@ -1,20 +1,23 @@
 import React from 'react'
 import { useField } from 'formik'
 import PropTypes from 'prop-types'
-import { TextField } from '@material-ui/core'
+import { TextField, Box, FormControl, InputLabel, Select, FormHelperText, MenuItem } from '@material-ui/core'
 
 export const FormikTextField = ({ label, ...props }) => {
   const [field, meta] = useField(props)
   const errorText = meta.touched && meta.error ? meta.error : ''
 
   return (
-    <TextField
-      {...field}
-      {...props}
-      label={label}
-      error={!!errorText}
-      helperText={errorText}
-    />
+    <Box>
+      <TextField
+        {...field}
+        {...props}
+        label={label}
+        error={!!errorText}
+        helperText={errorText}
+        style={{ minHeight: '5rem' }}
+      />
+    </Box>
   )
 }
 
@@ -27,20 +30,36 @@ FormikTextField.propTypes = {
 
 export const FormikSelectField = ({ options, label, ...props }) => {
   const [field, meta] = useField(props)
+  const errorText = meta.touched && meta.error ? meta.error : ''
+
   return (
-    <>
-      <label htmlFor={props.id || props.name}>{label}</label>
-      <select {...field} {...props}>
-        <option disabled value=''>Select a value</option>
-        {options.map(option => (
-          <option key={option.value} value={option.value}>
-            {option.label || option.value}
-          </option>
-        ))}
-      </select>
-      {meta.touched && meta.error ? (
-        <div style={{ color: 'red' }} className="error">{meta.error}</div>
-      ) : null}
-    </>
+    <Box>
+      <FormControl
+        style={{ minHeight: '5rem', minWidth: 120 }}
+        error={!!errorText}>
+        <InputLabel id={props.id || props.name}>{label}</InputLabel>
+        <Select {...field} >
+          <MenuItem disabled value="">Select a value</MenuItem>
+          {options.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label || option.value}
+            </MenuItem>
+          ))}
+        </Select>
+        <FormHelperText>{errorText}</FormHelperText>
+      </FormControl>
+    </Box>
   )
+}
+
+FormikSelectField.propTypes = {
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]).isRequired,
+    label: PropTypes.string
+  })).isRequired
 }

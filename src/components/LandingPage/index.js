@@ -29,8 +29,8 @@ const LandingPage = () => {
           classNames='fade'
         >
           {logInForm ?
-            <RegisterForm submit={registerSubmit} /> :
-            <LogInForm submit={loginSubmit} />
+            <div><RegisterForm submit={registerSubmit} /></div> :
+            <div><LogInForm submit={loginSubmit} /></div>
           }
         </CSSTransition>
       </SwitchTransition>
@@ -38,7 +38,7 @@ const LandingPage = () => {
         change to {logInForm ? 'Log In' : 'Sign Up'}
       </button>
       <Link to="/home">
-        <button>go to main page</button>
+        <p>go to main page</p>
       </Link>
     </div>
   )
