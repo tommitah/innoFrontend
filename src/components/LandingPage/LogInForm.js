@@ -7,7 +7,7 @@ import { Card, CardContent, Typography, Button } from '@material-ui/core'
 
 const LogInForm = ({ submit }) => {
   return (
-    <Card>
+    <Card variant="outlined" style={{ maxWidth: 345 }}>
       <CardContent>
         <Typography variant="h4">Log In</Typography>
         <Formik

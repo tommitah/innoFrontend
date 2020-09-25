@@ -12,7 +12,7 @@ const SignUpForm = ({ submit }) => {
   ]
 
   return (
-    <Card>
+    <Card variant="outlined" style={{ maxWidth: 345 }}>
       <CardContent>
         <Typography variant="h4">Sign Up</Typography>
         <Formik
