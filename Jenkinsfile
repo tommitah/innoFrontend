@@ -8,6 +8,7 @@ pipeline {
       steps {
         echo 'Build stage'
         sh 'npm install'
+        sh 'npm run build'
       }
     }
     stage('Test stage') {
