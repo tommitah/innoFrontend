@@ -3,13 +3,15 @@ import { Formik, Form } from 'formik'
 
 import { FormikTextField } from '../FormField'
 
-import { Card, CardContent, Typography, Button } from '@material-ui/core'
+import { Card, CardContent, Typography, Button, Box } from '@material-ui/core'
 
 const LogInForm = ({ submit }) => {
   return (
-    <Card variant="outlined" style={{ maxWidth: 345 }}>
+    <Card variant="outlined">
       <CardContent>
-        <Typography variant="h4">Log In</Typography>
+        <Typography align="center" variant="h4">
+          Log In
+        </Typography>
         <Formik
           initialValues={{ email: '', password: '' }}
           validate={values => {
@@ -27,30 +29,32 @@ const LogInForm = ({ submit }) => {
           }}
           onSubmit={(values) => {
             submit(values)
-          }}
-        >
+          }}>
           {({ isValid, dirty }) => (
             <Form>
-              <FormikTextField
-                label="Email"
-                name="email"
-                type="text"
-                placeholder="test@test.com"
-              />
-              <FormikTextField
-                label="Password"
-                name="password"
-                type="password"
-                placeholder="jorma123"
-              />
-              <Button
-                type="submit"
-                disabled={!dirty || !isValid}
-                variant="contained"
-                color="primary"
-              >
-                Submit
-              </Button>
+              <Box
+                display="flex"
+                flexDirection="column">
+                <FormikTextField
+                  label="Email"
+                  name="email"
+                  type="text"
+                  placeholder="test@test.com"
+                />
+                <FormikTextField
+                  label="Password"
+                  name="password"
+                  type="password"
+                  placeholder="jorma123"
+                />
+                <Button
+                  type="submit"
+                  disabled={!dirty || !isValid}
+                  variant="contained"
+                  color="primary">
+                  Submit
+                </Button>
+              </Box>
             </Form>
           )}
         </Formik>

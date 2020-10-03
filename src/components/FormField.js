@@ -1,23 +1,21 @@
 import React from 'react'
 import { useField } from 'formik'
 import PropTypes from 'prop-types'
-import { TextField, Box, FormControl, InputLabel, Select, FormHelperText, MenuItem } from '@material-ui/core'
+import { TextField, FormControl, InputLabel, Select, FormHelperText, MenuItem } from '@material-ui/core'
 
 export const FormikTextField = ({ label, ...props }) => {
   const [field, meta] = useField(props)
   const errorText = meta.touched && meta.error ? meta.error : ''
 
   return (
-    <Box>
-      <TextField
-        {...field}
-        {...props}
-        label={label}
-        error={!!errorText}
-        helperText={errorText}
-        style={{ minHeight: '5rem' }}
-      />
-    </Box>
+    <TextField
+      {...field}
+      {...props}
+      label={label}
+      error={!!errorText}
+      helperText={errorText}
+      style={{ minHeight: '5rem' }}
+    />
   )
 }
 
@@ -33,22 +31,20 @@ export const FormikSelectField = ({ options, label, ...props }) => {
   const errorText = meta.touched && meta.error ? meta.error : ''
 
   return (
-    <Box>
-      <FormControl
-        style={{ minHeight: '5rem', minWidth: 120 }}
-        error={!!errorText}>
-        <InputLabel id={props.id || props.name}>{label}</InputLabel>
-        <Select {...field} >
-          <MenuItem disabled value="">Select a value</MenuItem>
-          {options.map(option => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label || option.value}
-            </MenuItem>
-          ))}
-        </Select>
-        <FormHelperText>{errorText}</FormHelperText>
-      </FormControl>
-    </Box>
+    <FormControl
+      style={{ minHeight: '5rem', minWidth: 120 }}
+      error={!!errorText}>
+      <InputLabel id={props.id || props.name}>{label}</InputLabel>
+      <Select {...field} >
+        <MenuItem disabled value="">Select a value</MenuItem>
+        {options.map(option => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label || option.value}
+          </MenuItem>
+        ))}
+      </Select>
+      <FormHelperText>{errorText}</FormHelperText>
+    </FormControl>
   )
 }
 

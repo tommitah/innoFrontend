@@ -2,7 +2,7 @@ import React from 'react'
 import { Formik, Form } from 'formik'
 import { FormikTextField, FormikSelectField } from '../FormField'
 
-import { Card, CardContent, Typography, Button } from '@material-ui/core'
+import { Card, CardContent, Typography, Button, Box } from '@material-ui/core'
 
 const SignUpForm = ({ submit }) => {
   const userOptions = [
@@ -12,9 +12,11 @@ const SignUpForm = ({ submit }) => {
   ]
 
   return (
-    <Card variant="outlined" style={{ maxWidth: 345 }}>
+    <Card variant="outlined">
       <CardContent>
-        <Typography variant="h4">Sign Up</Typography>
+        <Typography align="center" variant="h4">
+          Sign Up
+        </Typography>
         <Formik
           initialValues={{
             name: '', email: '', password: '', passwordAgain: '', user: ''
@@ -48,47 +50,55 @@ const SignUpForm = ({ submit }) => {
           }}
           onSubmit={(values) => {
             submit(values)
-          }}
-        >
+          }}>
           {({ isValid, dirty }) => (
             <Form>
-              <FormikTextField
-                label="Name"
-                name="name"
-                type="text"
-                placeholder="jarmo"
-              />
-              <FormikTextField
-                label="Email"
-                name="email"
-                type="text"
-                placeholder="test@test.com"
-              />
-              <FormikTextField
-                label="Password"
-                name="password"
-                type="password"
-                placeholder="jorma123"
-              />
-              <FormikTextField
-                label="Password Again"
-                name="passwordAgain"
-                type="password"
-                placeholder="jorma123"
-              />
-              <FormikSelectField
-                label="User"
-                name="user"
-                options={userOptions}
-              />
-              <Button
-                type="submit"
-                disabled={!dirty || !isValid}
-                variant="contained"
-                color="primary"
-              >
-                Submit
-              </Button>
+              <Box
+                display="flex"
+                flexDirection="column">
+                <FormikTextField
+                  label="Name"
+                  name="name"
+                  type="text"
+                  placeholder="jarmo"
+                />
+                <FormikTextField
+                  label="Email"
+                  name="email"
+                  type="text"
+                  placeholder="test@test.com"
+                />
+                <Box
+                  display="flex"
+                  flexDirection="row">
+                  <Box paddingRight={1}>
+                    <FormikTextField
+                      label="Password"
+                      name="password"
+                      type="password"
+                      placeholder="jorma123"
+                    />
+                  </Box>
+                  <FormikTextField
+                    label="Confirm"
+                    name="passwordAgain"
+                    type="password"
+                    placeholder="jorma123"
+                  />
+                </Box>
+                <FormikSelectField
+                  label="User"
+                  name="user"
+                  options={userOptions}
+                />
+                <Button
+                  type="submit"
+                  disabled={!dirty || !isValid}
+                  variant="contained"
+                  color="primary">
+                  Submit
+                </Button>
+              </Box>
             </Form>
           )}
         </Formik>
