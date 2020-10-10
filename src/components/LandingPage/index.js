@@ -1,22 +1,28 @@
 import React, { useState } from 'react'
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
-import { Link as RouterLink } from 'react-router-dom'
+import { Link as RouterLink, useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from '../../_actions/userActions'
 
-import RegisterForm from './SignUpForm'
+import SignUpForm from './SignUpForm'
 import LogInForm from './LogInForm'
 import './landingPage.css'
 
-import { Box, Button, Divider, Grid } from '@material-ui/core'
+import { Box, Button, Divider, Grid, CircularProgress } from '@material-ui/core'
 
 const LandingPage = () => {
   const [logInForm, setLogInForm] = useState(false)
+  const location = useLocation()
+  const dispatch = useDispatch()
+  const loggingIn = useSelector(state => state.user.loggingIn)
 
-  const registerSubmit = (user) => {
+  const signupSubmit = (user) => {
     console.log('register', user)
   }
 
   const loginSubmit = (user) => {
-    console.log('login', user)
+    const { from } = location.state || { from: { pathname: '/home' } }
+    dispatch(login(user.email, user.password, from))
   }
 
   const rootStyle = {
@@ -41,7 +47,7 @@ const LandingPage = () => {
             classNames='fade'>
             <Box paddingBottom={2}>
               {logInForm ?
-                <RegisterForm submit={registerSubmit} /> :
+                <SignUpForm submit={signupSubmit} /> :
                 <LogInForm submit={loginSubmit} />
               }
             </Box>
@@ -55,7 +61,7 @@ const LandingPage = () => {
             <Button
               variant="outlined"
               color="secondary"
-              onClick={() => setLogInForm(!logInForm)}>
+              onClick={() => setLogInForm(prevLogInForm => !prevLogInForm)}>
               {logInForm ? 'Log In' : 'Sign Up'}
             </Button>
           </Grid>
@@ -66,6 +72,7 @@ const LandingPage = () => {
             </Button>
           </Grid>
         </Grid>
+        {loggingIn && <CircularProgress />}
       </Box>
     </div>
   )
