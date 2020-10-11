@@ -19,8 +19,7 @@ const login = async credentials => {
 
 
 const me = async () => {
-  const response = await axios.get(`${baseUrl}/me`, authHeader())
-  return response.data
+  return await axios.get(`${baseUrl}/me`, authHeader())
 }
 
 export default {

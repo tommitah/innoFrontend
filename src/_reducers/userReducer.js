@@ -5,15 +5,22 @@ const user = loadUser()
 const initialState = user ? { loggedIn: true, user } : {}
 
 const userReducer = (state = initialState, action) => {
+  console.log('userReducer', action)
   switch (action.type) {
     case userConstants.REQUEST:
       return {
-        loggingIn: true,
+        loading: true,
+        loggedIn: !!state.loggedIn
       }
     case userConstants.SUCCESS:
       return {
         loggedIn: true,
         user: action.user
+      }
+    case userConstants.ME:
+      return {
+        loggedIn: true,
+        info: action.info
       }
     case userConstants.FAILURE:
     case userConstants.LOGOUT:

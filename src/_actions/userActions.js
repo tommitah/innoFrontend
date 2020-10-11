@@ -46,3 +46,23 @@ export const signup = (user) => {
     }
   }
 }
+
+export const me = () => {
+  return async dispatch => {
+    dispatch({
+      type: userConstants.REQUEST
+    })
+    try {
+      const { data: info } = await userService.me()
+      dispatch({
+        type: userConstants.ME,
+        info
+      })
+    } catch (error) {
+      dispatch({
+        type: userConstants.FAILURE,
+        error: error.response.data
+      })
+    }
+  }
+}

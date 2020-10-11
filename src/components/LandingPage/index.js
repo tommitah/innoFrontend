@@ -14,7 +14,7 @@ const LandingPage = () => {
   const [logInForm, setLogInForm] = useState(false)
   const location = useLocation()
   const dispatch = useDispatch()
-  const loggingIn = useSelector(state => state.user.loggingIn)
+  const loggingIn = useSelector(state => state.user.loading)
 
   const signupSubmit = (user) => {
     dispatch(signup({ username: user.name, email: user.email, password: user.password }))

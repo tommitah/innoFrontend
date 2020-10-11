@@ -1,27 +1,29 @@
-import React, { useEffect, useState } from 'react'
-import userService from '../../_services/userService'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { me } from '../../_actions/userActions'
+
+import { CircularProgress } from '@material-ui/core'
 
 const Profile = () => {
-  const [user, setUser] = useState(null)
+  const user = useSelector(state => state.user)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    userService.me().then(response => setUser(response))
-  }, [])
+    dispatch(me())
+  }, [dispatch])
 
-  if (user) {
-    return (
-      <div>
-        {Object.keys(user).map(key => (
-          <div style={{ padding: 4 }} key={key}>
-            <span>{key}: </span>
-            <span>{user[key]}</span>
-          </div>
-        ))}
-      </div>
-    )
+  if (user.loading || !user.info) {
+    return <CircularProgress />
   }
   return (
-    <div>loading...</div>
+    <div>
+      {Object.keys(user.info).map(key => (
+        <div style={{ padding: 4 }} key={key}>
+          <span>{key}: </span>
+          <span>{user.info[key]}</span>
+        </div>
+      ))}
+    </div>
   )
 }
 
