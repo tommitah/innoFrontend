@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import { Link as RouterLink, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { login } from '../../_actions/userActions'
+import { login, signup } from '../../_actions/userActions'
 
 import SignUpForm from './SignUpForm'
 import LogInForm from './LogInForm'
@@ -17,7 +17,7 @@ const LandingPage = () => {
   const loggingIn = useSelector(state => state.user.loggingIn)
 
   const signupSubmit = (user) => {
-    console.log('register', user)
+    dispatch(signup({ username: user.name, email: user.email, password: user.password }))
   }
 
   const loginSubmit = (user) => {

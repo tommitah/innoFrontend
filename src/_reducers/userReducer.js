@@ -1,22 +1,22 @@
 import { loadUser } from '../_utils/storage'
+import userConstants from '../_constants/userConstants'
 
 const user = loadUser()
 const initialState = user ? { loggedIn: true, user } : {}
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'LOGIN_REQUEST':
+    case userConstants.REQUEST:
       return {
         loggingIn: true,
-        user: action.user
       }
-    case 'LOGIN_SUCCESS':
+    case userConstants.SUCCESS:
       return {
         loggedIn: true,
         user: action.user
       }
-    case 'LOGIN_FAILURE':
-    case 'LOGOUT':
+    case userConstants.FAILURE:
+    case userConstants.LOGOUT:
       return {}
     default:
       return state
