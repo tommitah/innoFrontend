@@ -2,6 +2,7 @@ import userService from '../_services/userService'
 import { saveUser } from '../_utils/storage'
 import history from '../_utils/history'
 import userConstants from '../_constants/userConstants'
+import { setAlert } from './alertActions'
 
 export const login = (email, password, from) => {
   return async dispatch => {
@@ -16,11 +17,13 @@ export const login = (email, password, from) => {
       })
       saveUser(user)
       history.push(from)
+      dispatch(setAlert('login successful', 'success'))
     } catch (error) {
       dispatch({
         type: userConstants.FAILURE,
         error: error.response.data
       })
+      dispatch(setAlert('login failed', 'error'))
     }
   }
 }
@@ -38,11 +41,13 @@ export const signup = (user) => {
       })
       saveUser(userData)
       history.push('/home')
+      dispatch(setAlert('signup successful', 'success'))
     } catch (error) {
       dispatch({
         type: userConstants.FAILURE,
         error: error.response.data
       })
+      dispatch(setAlert('signup failed', 'error'))
     }
   }
 }
