@@ -2,7 +2,7 @@ import alertConstants from '../_constants/alertConstants'
 
 let timeoutId
 
-export const setAlert = (message, severity = 'success', duration = 5) => {
+export const setAlert = (message, severity = 'info', duration = 5) => {
   return async dispatch => {
     dispatch({
       type: alertConstants.SET,

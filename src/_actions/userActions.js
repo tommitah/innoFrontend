@@ -21,7 +21,6 @@ export const login = (email, password, from) => {
     } catch (error) {
       dispatch({
         type: userConstants.FAILURE,
-        error: error.response.data
       })
       dispatch(setAlert('login failed', 'error'))
     }
@@ -45,7 +44,6 @@ export const signup = (user) => {
     } catch (error) {
       dispatch({
         type: userConstants.FAILURE,
-        error: error.response.data
       })
       dispatch(setAlert('signup failed', 'error'))
     }
