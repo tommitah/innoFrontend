@@ -1,11 +1,12 @@
 import React from 'react'
 import { Formik, Form } from 'formik'
+import PropTypes from 'prop-types'
 
 import { FormikTextField } from '../FormField'
 
-import { Card, CardContent, Typography, Button, Box } from '@material-ui/core'
+import { Card, CardContent, Typography, Button, Box, CircularProgress } from '@material-ui/core'
 
-const LogInForm = ({ submit }) => {
+const LogInForm = ({ loggingIn, submit }) => {
   return (
     <Card variant="outlined">
       <CardContent>
@@ -49,10 +50,10 @@ const LogInForm = ({ submit }) => {
                 />
                 <Button
                   type="submit"
-                  disabled={!dirty || !isValid}
+                  disabled={!dirty || !isValid || loggingIn}
                   variant="contained"
                   color="primary">
-                  Submit
+                  {loggingIn ? <CircularProgress size={24} /> : 'submit'}
                 </Button>
               </Box>
             </Form>
@@ -61,6 +62,11 @@ const LogInForm = ({ submit }) => {
       </CardContent>
     </Card>
   )
+}
+
+LogInForm.propTypes = {
+  loggingIn: PropTypes.bool,
+  submit: PropTypes.func.isRequired
 }
 
 export default LogInForm

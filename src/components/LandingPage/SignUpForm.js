@@ -1,10 +1,12 @@
 import React from 'react'
 import { Formik, Form } from 'formik'
+import PropTypes from 'prop-types'
+
 import { FormikTextField, FormikSelectField } from '../FormField'
 
-import { Card, CardContent, Typography, Button, Box } from '@material-ui/core'
+import { Card, CardContent, Typography, Button, Box, CircularProgress } from '@material-ui/core'
 
-const SignUpForm = ({ submit }) => {
+const SignUpForm = ({ loggingIn, submit }) => {
   const userOptions = [
     { value: 'worker', label: 'Worker' },
     { value: 'company', label: 'Company' },
@@ -93,10 +95,10 @@ const SignUpForm = ({ submit }) => {
                 />
                 <Button
                   type="submit"
-                  disabled={!dirty || !isValid}
+                  disabled={!dirty || !isValid || loggingIn}
                   variant="contained"
                   color="primary">
-                  Submit
+                  {loggingIn ? <CircularProgress size={24} /> : 'submit'}
                 </Button>
               </Box>
             </Form>
@@ -105,6 +107,12 @@ const SignUpForm = ({ submit }) => {
       </CardContent>
     </Card>
   )
+}
+
+
+SignUpForm.propTypes = {
+  loggingIn: PropTypes.bool,
+  submit: PropTypes.func.isRequired
 }
 
 export default SignUpForm

@@ -8,7 +8,7 @@ import SignUpForm from './SignUpForm'
 import LogInForm from './LogInForm'
 import './landingPage.css'
 
-import { Box, Button, Divider, Grid, CircularProgress } from '@material-ui/core'
+import { Box, Button, Divider, Grid } from '@material-ui/core'
 
 const LandingPage = () => {
   const [logInForm, setLogInForm] = useState(false)
@@ -47,8 +47,8 @@ const LandingPage = () => {
             classNames='fade'>
             <Box paddingBottom={2}>
               {logInForm ?
-                <SignUpForm submit={signupSubmit} /> :
-                <LogInForm submit={loginSubmit} />
+                <SignUpForm loggingIn={loggingIn} submit={signupSubmit} /> :
+                <LogInForm loggingIn={loggingIn} submit={loginSubmit} />
               }
             </Box>
           </CSSTransition>
@@ -72,7 +72,6 @@ const LandingPage = () => {
             </Button>
           </Grid>
         </Grid>
-        {loggingIn && <CircularProgress />}
       </Box>
     </div>
   )
