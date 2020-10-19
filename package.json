@@ -1,5 +1,11 @@
 {
   "name": "inno-frontend",
+  "jest": {
+    "coverageReporters": [
+      "text",
+      "cobertura"
+    ]
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {

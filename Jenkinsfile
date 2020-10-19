@@ -23,14 +23,7 @@ pipeline {
       }
       post {
         always {
-          publishHTML target: [
-            allowMissing         : false,
-            alwaysLinkToLastBuild: false,
-            keepAll             : true,
-            reportDir            : 'coverage/lcov-report',
-            reportFiles          : 'index.html',
-            reportName           : 'Test Report'
-          ]
+          step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/cobertura-coverage.xml'])
         }
       }
     }
