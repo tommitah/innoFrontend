@@ -14,15 +14,29 @@ pipeline {
   stages {
     stage('Build stage') {
       steps {
-        echo 'Build stage'
+        echo '------> Build stage <------'
+        echo "Install node modules"
         sh 'npm install'
         sh 'npm run build'
       }
+      
     }
     stage('Test stage') {
       steps {
-        echo 'Test stage'
+        echo '------> Test stage <------'
         sh 'npm test'
+      }
+      post{
+        always {
+          publishHTML target: [
+            allowMissing         : false,
+            alwaysLinkToLastBuild: false,
+            keepAll             : true,
+            reportDir            : 'output/coverage/jest',
+            reportFiles          : 'index.html',
+            reportName           : 'Test Report'
+          ]
+        }
       }
     }
     stage('Deploy stage') {
