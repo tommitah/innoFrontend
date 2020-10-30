@@ -1,8 +1,8 @@
 import { loadUser } from '../_utils/storage'
 import userConstants from '../_constants/userConstants'
 
-const user = loadUser()
-const initialState = user ? { loggedIn: true, user } : {}
+const userData = loadUser()
+const initialState = userData ? { loggedIn: true, data: userData } : {}
 
 const userReducer = (state = initialState, action) => {
   console.log('userReducer', action)
@@ -10,17 +10,19 @@ const userReducer = (state = initialState, action) => {
     case userConstants.REQUEST:
       return {
         loading: true,
+        data: state.data,
         loggedIn: !!state.loggedIn
       }
-    case userConstants.SUCCESS:
+    case userConstants.LOGIN_SUCCESS:
       return {
         loggedIn: true,
-        user: action.user
+        data: action.data
       }
-    case userConstants.ME:
+    case userConstants.PROFILE_SUCCESS:
       return {
         loggedIn: true,
-        info: action.info
+        data: state.data,
+        profile: action.profile
       }
     case userConstants.FAILURE:
     case userConstants.LOGOUT:

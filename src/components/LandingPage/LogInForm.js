@@ -1,11 +1,18 @@
 import React from 'react'
 import { Formik, Form } from 'formik'
+import PropTypes from 'prop-types'
 
-import { FormikTextField } from '../FormField'
+import { FormikTextField, FormikRadioField } from '../FormField'
 
-import { Card, CardContent, Typography, Button, Box } from '@material-ui/core'
+import { Card, CardContent, Typography, Button, Box, CircularProgress } from '@material-ui/core'
 
-const LogInForm = ({ submit }) => {
+const LogInForm = ({ loggingIn, handleSubmit }) => {
+  const roleOptions = [
+    { value: 'worker', label: 'Worker' },
+    { value: 'agency', label: 'Agency' },
+    { value: 'business', label: 'Business' }
+  ]
+
   return (
     <Card variant="outlined">
       <CardContent>
@@ -13,28 +20,37 @@ const LogInForm = ({ submit }) => {
           Log In
         </Typography>
         <Formik
-          initialValues={{ email: '', password: '' }}
+          initialValues={{ email: '', password: '', role: '' }}
           validate={values => {
             const errors = {}
             const emailRegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+            const requiredError = 'Field is required'
             if (!values.email) {
-              errors.email = 'Required'
+              errors.email = requiredError
             } else if (!emailRegExp.test(values.email)) {
               errors.email = 'Invalid email address'
             }
             if (!values.password) {
-              errors.password = 'Required'
+              errors.password = requiredError
+            }
+            if (!values.role) {
+              errors.role = requiredError
             }
             return errors
           }}
           onSubmit={(values) => {
-            submit(values)
+            handleSubmit(values)
           }}>
           {({ isValid, dirty }) => (
             <Form>
               <Box
                 display="flex"
                 flexDirection="column">
+                <FormikRadioField
+                  label="Role"
+                  name="role"
+                  options={roleOptions}
+                />
                 <FormikTextField
                   label="Email"
                   name="email"
@@ -49,10 +65,10 @@ const LogInForm = ({ submit }) => {
                 />
                 <Button
                   type="submit"
-                  disabled={!dirty || !isValid}
+                  disabled={!dirty || !isValid || loggingIn}
                   variant="contained"
                   color="primary">
-                  Submit
+                  {loggingIn ? <CircularProgress size={24} /> : 'submit'}
                 </Button>
               </Box>
             </Form>
@@ -61,6 +77,11 @@ const LogInForm = ({ submit }) => {
       </CardContent>
     </Card>
   )
+}
+
+LogInForm.propTypes = {
+  loggingIn: PropTypes.bool,
+  handleSubmit: PropTypes.func.isRequired
 }
 
 export default LogInForm

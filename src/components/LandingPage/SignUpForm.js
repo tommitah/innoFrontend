@@ -1,14 +1,16 @@
 import React from 'react'
 import { Formik, Form } from 'formik'
+import PropTypes from 'prop-types'
+
 import { FormikTextField, FormikSelectField } from '../FormField'
 
-import { Card, CardContent, Typography, Button, Box } from '@material-ui/core'
+import { Card, CardContent, Typography, Button, Box, CircularProgress } from '@material-ui/core'
 
-const SignUpForm = ({ submit }) => {
-  const userOptions = [
+const SignUpForm = ({ loggingIn, handleSubmit }) => {
+  const roleOptions = [
     { value: 'worker', label: 'Worker' },
-    { value: 'company', label: 'Company' },
-    { value: 'other', label: 'Other' }
+    { value: 'agency', label: 'Agency' },
+    { value: 'business', label: 'Business' }
   ]
 
   return (
@@ -19,7 +21,7 @@ const SignUpForm = ({ submit }) => {
         </Typography>
         <Formik
           initialValues={{
-            name: '', email: '', password: '', passwordAgain: '', user: ''
+            name: '', email: '', password: '', passwordConfirm: '', role: ''
           }}
           validate={values => {
             const errors = {}
@@ -38,18 +40,20 @@ const SignUpForm = ({ submit }) => {
             } else if (values.name.length < 3) {
               errors.name = 'Invalid name'
             }
-            if (!values.passwordAgain) {
-              errors.passwordAgain = requiredError
-            } else if (values.passwordAgain !== values.password) {
-              errors.passwordAgain = 'Password does not match'
+            if (!values.passwordConfirm) {
+              errors.passwordConfirm = requiredError
+            } else if (values.passwordConfirm !== values.password) {
+              errors.passwordConfirm = 'Password does not match'
             }
-            if (!values.user) {
-              errors.user = requiredError
+            if (!values.role) {
+              errors.role = requiredError
             }
             return errors
           }}
-          onSubmit={(values) => {
-            submit(values)
+          // handleSubmit doesn't need password confirmation
+          // eslint-disable-next-line no-unused-vars
+          onSubmit={({ passwordConfirm, ...rest }) => {
+            handleSubmit(rest)
           }}>
           {({ isValid, dirty }) => (
             <Form>
@@ -81,22 +85,22 @@ const SignUpForm = ({ submit }) => {
                   </Box>
                   <FormikTextField
                     label="Confirm"
-                    name="passwordAgain"
+                    name="passwordConfirm"
                     type="password"
                     placeholder="jorma123"
                   />
                 </Box>
                 <FormikSelectField
-                  label="User"
-                  name="user"
-                  options={userOptions}
+                  label="Role"
+                  name="role"
+                  options={roleOptions}
                 />
                 <Button
                   type="submit"
-                  disabled={!dirty || !isValid}
+                  disabled={!dirty || !isValid || loggingIn}
                   variant="contained"
                   color="primary">
-                  Submit
+                  {loggingIn ? <CircularProgress size={24} /> : 'submit'}
                 </Button>
               </Box>
             </Form>
@@ -105,6 +109,12 @@ const SignUpForm = ({ submit }) => {
       </CardContent>
     </Card>
   )
+}
+
+
+SignUpForm.propTypes = {
+  loggingIn: PropTypes.bool,
+  handleSubmit: PropTypes.func.isRequired
 }
 
 export default SignUpForm
