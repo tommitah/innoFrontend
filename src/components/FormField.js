@@ -10,8 +10,8 @@ import {
   MenuItem,
   FormLabel,
   RadioGroup,
-  FormControlLabel,
-  Radio
+  Radio,
+  FormControlLabel
 } from '@material-ui/core'
 
 export const FormikTextField = ({ label, ...props }) => {
