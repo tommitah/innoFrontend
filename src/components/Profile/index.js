@@ -28,12 +28,14 @@ const Profile = () => {
   } else if (data.role === Role.Agency) {
     return (
       <div>
+        <p>agency</p>
         <p>{JSON.stringify(user.profile)}</p>
       </div>
     )
   } else if (data.role === Role.Business) {
     return (
       <div>
+        <p>business</p>
         <p>{JSON.stringify(user.profile)}</p>
       </div>
     )
