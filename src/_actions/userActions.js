@@ -50,6 +50,14 @@ export const signup = (user, role) => {
   }
 }
 
+export const logout = () => {
+  return async dispatch => {
+    logoutUser()
+    dispatch({ type: userConstants.LOGOUT })
+    dispatch(setAlert('user logged out', 'success'))
+  }
+}
+
 export const me = () => {
   return async dispatch => {
     dispatch({

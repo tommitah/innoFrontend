@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
+
+import { logout } from '../_actions/userActions'
 
 import {
   Divider,
@@ -12,9 +15,16 @@ import {
   ListItemText,
   makeStyles,
 } from '@material-ui/core'
-import { ChevronLeft, Inbox, Mail } from '@material-ui/icons'
+import { ChevronLeft, Home, ExitToApp, AccountCircle } from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
+  drawer: {
+    width: '250px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: '100%'
+  },
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
@@ -22,11 +32,12 @@ const useStyles = makeStyles((theme) => ({
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: 'flex-start',
-  }
+  },
 }))
 
-const Drawer = ({ open, handleDrawer }) => {
+const Drawer = ({ open, handleDrawer, loggedIn }) => {
   const classes = useStyles()
+  const dispatch = useDispatch()
 
   return (
     <MUIDrawer
@@ -35,21 +46,40 @@ const Drawer = ({ open, handleDrawer }) => {
       onBackdropClick={handleDrawer}
       onEscapeKeyDown={handleDrawer}
       open={open}>
-      <div style={{ width: '250px' }}>
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawer}>
-            <ChevronLeft />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          {['Profile', 'Test2', 'Test3', 'Test4'].map((text, index) => (
-            <ListItem button key={text} component={Link} to="/profile">
-              <ListItemIcon>{index % 2 === 0 ? <Inbox /> : <Mail />}</ListItemIcon>
-              <ListItemText primary={text} />
+      <div className={classes.drawer}>
+        <div>
+          <div className={classes.drawerHeader}>
+            <IconButton onClick={handleDrawer}>
+              <ChevronLeft />
+            </IconButton>
+          </div>
+          <Divider />
+          <List disablePadding>
+            <ListItem button component={Link} to="/home">
+              <ListItemIcon><Home /></ListItemIcon>
+              <ListItemText primary="Home" />
             </ListItem>
-          ))}
-        </List>
+            {loggedIn &&
+              <ListItem button component={Link} to="/profile">
+                <ListItemIcon><AccountCircle /></ListItemIcon>
+                <ListItemText primary="Profile" />
+              </ListItem>
+            }
+          </List>
+        </div>
+        <div>
+          <Divider />
+          {loggedIn ?
+            <ListItem button onClick={() => dispatch(logout())}>
+              <ListItemIcon><ExitToApp /></ListItemIcon>
+              <ListItemText primary="Logout" />
+            </ListItem> :
+            <ListItem button component={Link} to="/">
+              <ListItemIcon><ExitToApp /></ListItemIcon>
+              <ListItemText primary="Login" secondary="Signup" />
+            </ListItem>
+          }
+        </div>
       </div>
     </MUIDrawer>
   )
@@ -57,7 +87,8 @@ const Drawer = ({ open, handleDrawer }) => {
 
 Drawer.propTypes = {
   open: PropTypes.bool.isRequired,
-  handleDrawer: PropTypes.func.isRequired
+  handleDrawer: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool
 }
 
 export default Drawer
