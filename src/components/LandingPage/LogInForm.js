@@ -6,8 +6,8 @@ import { FormikTextField, FormikRadioField } from '../FormField'
 
 import { Card, CardContent, Typography, Button, Box, CircularProgress } from '@material-ui/core'
 
-const LogInForm = ({ loggingIn, submit }) => {
-  const userOptions = [
+const LogInForm = ({ loggingIn, handleSubmit }) => {
+  const roleOptions = [
     { value: 'worker', label: 'Worker' },
     { value: 'agency', label: 'Agency' },
     { value: 'business', label: 'Business' }
@@ -20,7 +20,7 @@ const LogInForm = ({ loggingIn, submit }) => {
           Log In
         </Typography>
         <Formik
-          initialValues={{ email: '', password: '', user: '' }}
+          initialValues={{ email: '', password: '', role: '' }}
           validate={values => {
             const errors = {}
             const emailRegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
@@ -33,13 +33,13 @@ const LogInForm = ({ loggingIn, submit }) => {
             if (!values.password) {
               errors.password = requiredError
             }
-            if (!values.user) {
-              errors.user = requiredError
+            if (!values.role) {
+              errors.role = requiredError
             }
             return errors
           }}
           onSubmit={(values) => {
-            submit(values)
+            handleSubmit(values)
           }}>
           {({ isValid, dirty }) => (
             <Form>
@@ -47,9 +47,9 @@ const LogInForm = ({ loggingIn, submit }) => {
                 display="flex"
                 flexDirection="column">
                 <FormikRadioField
-                  label="User"
-                  name="user"
-                  options={userOptions}
+                  label="Role"
+                  name="role"
+                  options={roleOptions}
                 />
                 <FormikTextField
                   label="Email"
@@ -81,7 +81,7 @@ const LogInForm = ({ loggingIn, submit }) => {
 
 LogInForm.propTypes = {
   loggingIn: PropTypes.bool,
-  submit: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired
 }
 
 export default LogInForm

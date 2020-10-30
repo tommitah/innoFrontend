@@ -1,21 +1,21 @@
 import userService from '../_services/userService'
-import { saveUser } from '../_utils/storage'
+import { saveUser, logoutUser } from '../_utils/storage'
 import history from '../_utils/history'
 import userConstants from '../_constants/userConstants'
 import { setAlert } from './alertActions'
 
-export const login = (email, password, from) => {
+export const login = (credentials, role, from) => {
   return async dispatch => {
     dispatch({
       type: userConstants.REQUEST,
     })
     try {
-      const { data: user } = await userService.login({ email, password })
+      const { data } = await userService.login(credentials, role)
       dispatch({
-        type: userConstants.SUCCESS,
-        user: user
+        type: userConstants.LOGIN_SUCCESS,
+        data
       })
-      saveUser(user)
+      saveUser(data)
       history.push(from)
       dispatch(setAlert('login successful', 'success'))
     } catch (error) {
@@ -27,18 +27,18 @@ export const login = (email, password, from) => {
   }
 }
 
-export const signup = (user) => {
+export const signup = (user, role) => {
   return async dispatch => {
     dispatch({
       type: userConstants.REQUEST,
     })
     try {
-      const { data: userData } = await userService.signup(user)
+      const { data } = await userService.signup(user, role)
       dispatch({
-        type: userConstants.SUCCESS,
-        user: userData
+        type: userConstants.LOGIN_SUCCESS,
+        data
       })
-      saveUser(userData)
+      saveUser(data)
       history.push('/home')
       dispatch(setAlert('signup successful', 'success'))
     } catch (error) {
@@ -56,16 +56,21 @@ export const me = () => {
       type: userConstants.REQUEST
     })
     try {
-      const { data: info } = await userService.me()
+      const { data: profile } = await userService.me()
       dispatch({
-        type: userConstants.ME,
-        info
+        type: userConstants.PROFILE_SUCCESS,
+        profile
       })
     } catch (error) {
-      dispatch({
-        type: userConstants.FAILURE,
-        error: error.response.data
-      })
+      statusHandler(dispatch, error)
     }
+  }
+}
+
+const statusHandler = (dispatch, response) => {
+  if (!response || response.status === 401 || response.status === 500) {
+    logoutUser()
+    dispatch({ type: userConstants.FAILURE })
+    dispatch(setAlert('invalid token', 'error'))
   }
 }

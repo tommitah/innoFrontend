@@ -12,13 +12,13 @@ describe('<LogInForm />', () => {
   beforeEach(() => {
     mockSubmit = jest.fn()
     component = render(
-      <LogInForm submit={mockSubmit} />
+      <LogInForm handleSubmit={mockSubmit} />
     )
   })
 
   test('renders content', () => {
     expect(component.container).toHaveTextContent('Log In')
-    expect(component.container).toHaveTextContent('User')
+    expect(component.container).toHaveTextContent('Role')
     expect(component.container).toHaveTextContent('Email')
     expect(component.container).toHaveTextContent('Password')
   })
@@ -52,6 +52,6 @@ describe('<LogInForm />', () => {
     expect(mockSubmit.mock.calls).toHaveLength(1)
     expect(mockSubmit.mock.calls[0][0].email).toBe('test@test.com')
     expect(mockSubmit.mock.calls[0][0].password).toBe('secret')
-    expect(mockSubmit.mock.calls[0][0].user).toBe('worker')
+    expect(mockSubmit.mock.calls[0][0].role).toBe('worker')
   })
 })
