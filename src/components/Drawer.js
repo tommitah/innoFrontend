@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import {
   Divider,
@@ -52,6 +53,11 @@ const Drawer = ({ open, handleDrawer }) => {
       </div>
     </MUIDrawer>
   )
+}
+
+Drawer.propTypes = {
+  open: PropTypes.bool.isRequired,
+  handleDrawer: PropTypes.func.isRequired
 }
 
 export default Drawer

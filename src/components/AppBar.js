@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import {
   AppBar as MUIAppBar,
@@ -21,6 +22,10 @@ const AppBar = ({ handleDrawer }) => {
       </Toolbar>
     </MUIAppBar>
   )
+}
+
+AppBar.propTypes = {
+  handleDrawer: PropTypes.func.isRequired
 }
 
 export default AppBar

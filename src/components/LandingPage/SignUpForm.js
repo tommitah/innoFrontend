@@ -111,7 +111,6 @@ const SignUpForm = ({ loggingIn, handleSubmit }) => {
   )
 }
 
-
 SignUpForm.propTypes = {
   loggingIn: PropTypes.bool,
   handleSubmit: PropTypes.func.isRequired
