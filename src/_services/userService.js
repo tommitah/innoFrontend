@@ -46,9 +46,9 @@ const login = async (credentials, role) => {
   }
 }
 
-const me = async () => {
+const me = async (role) => {
   try {
-    switch (loadUser().role) {
+    switch (role) {
       case Role.Worker:
         return await axios.get(`${baseUrl}/users/me`, authHeader())
       case Role.Agency:
@@ -65,8 +65,26 @@ const me = async () => {
   }
 }
 
+const update = async (updateData, role) => {
+  try {
+    switch (role) {
+      case Role.Worker:
+        return await axios.put(`${baseUrl}/users`, updateData, authHeader())
+      case Role.Agency:
+        return await axios.put(`${baseUrl}/agencies`, updateData, authHeader())
+      case Role.Business:
+        return await axios.put(`${baseUrl}/business`, updateData, authHeader())
+      default:
+        return Promise.reject({ status: 500 })
+    }
+  } catch (error) {
+    return Promise.reject(error.response)
+  }
+}
+
 export default {
   signup,
   login,
-  me
+  me,
+  update
 }

@@ -54,21 +54,40 @@ export const logout = () => {
   return async dispatch => {
     logoutUser()
     dispatch({ type: userConstants.LOGOUT })
-    dispatch(setAlert('user logged out', 'success'))
+    history.push('/')
+    dispatch(setAlert('user logged out'))
   }
 }
 
-export const me = () => {
+export const me = (role) => {
   return async dispatch => {
     dispatch({
       type: userConstants.REQUEST
     })
     try {
-      const { data: profile } = await userService.me()
+      const { data: profile } = await userService.me(role)
       dispatch({
         type: userConstants.PROFILE_SUCCESS,
         profile
       })
+    } catch (error) {
+      statusHandler(dispatch, error)
+    }
+  }
+}
+
+export const update = (updateData, role) => {
+  return async dispatch => {
+    dispatch({
+      type: userConstants.REQUEST
+    })
+    try {
+      const { data: profile } = await userService.update(updateData, role)
+      dispatch({
+        type: userConstants.PROFILE_SUCCESS,
+        profile
+      })
+      dispatch(setAlert('User information updated'))
     } catch (error) {
       statusHandler(dispatch, error)
     }

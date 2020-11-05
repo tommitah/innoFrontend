@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import LandingPage from './components/LandingPage'
-import Home from './components/Home'
-import Profile from './components/Profile'
+import HomePage from './components/HomePage'
+import ProfilePage from './components/ProfilePage'
 import PrivateRoute from './components/PrivateRoute'
 import Drawer from './components/Drawer'
 import AppBar from './components/AppBar'
@@ -37,7 +37,8 @@ const App = () => {
 
   // extra toolbar prevents content from going underneath appbar.
   return (
-    <div>
+    <>
+      <ScrollToTop />
       <CssBaseline />
       <AppBar handleDrawer={handleDrawer} />
       <Toolbar />
@@ -58,16 +59,25 @@ const App = () => {
             {loggedIn ? <Redirect to="/home" /> : <LandingPage />}
           </Route>
           <Route path="/home">
-            <Home />
+            <HomePage />
           </Route>
           <PrivateRoute path="/profile" loggedIn={loggedIn}>
-            <Profile />
+            <ProfilePage />
           </PrivateRoute>
           <Redirect from="*" to="/home" />
         </Switch>
       </Grid>
-    </div>
+    </>
   )
+}
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+  return null
 }
 
 export default App

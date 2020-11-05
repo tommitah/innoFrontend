@@ -34,7 +34,9 @@ FormikTextField.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['text', 'password']).isRequired,
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
+  disabled: PropTypes.bool,
+  variant: PropTypes.oneOf(['filled', 'outlined', 'standard'])
 }
 
 export const FormikSelectField = ({ options, label, ...props }) => {

@@ -1,11 +1,12 @@
 import React from 'react'
 
-const WorkerProfile = ({ profile }) => {
+const CompanyProfile = ({ profile }) => {
   return (
     <div>
+      <p>agency/business</p>
       <p>{JSON.stringify(profile)}</p>
     </div>
   )
 }
 
-export default WorkerProfile
+export default CompanyProfile
