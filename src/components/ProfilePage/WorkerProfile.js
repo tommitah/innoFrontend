@@ -10,30 +10,29 @@ const WorkerProfile = ({ profile, handleSubmit }) => {
   const [edit, setEdit] = useState(true)
 
   return (
-    <Card style={{ marginBottom: '2em' }} variant="outlined">
+    <Card variant="outlined">
       <CardContent>
-        <Box paddingBottom={2}>
-          <Box
-            display="flex"
-            flexDirection="row"
-            justifyContent="space-between">
-            <Typography align="center" variant="h4">
-              Profile
-            </Typography>
-            <FormControlLabel
-              control={<Switch
-                size="small"
-                checked={!edit}
-                onChange={() => setEdit(prevEdit => !prevEdit)}
-              />}
-              label="edit"
-            />
-          </Box>
+        <Box
+          paddingBottom={2}
+          display="flex"
+          flexDirection="row"
+          justifyContent="space-between">
+          <Typography align="center" variant="h4">
+            Profile
+          </Typography>
+          <FormControlLabel
+            control={<Switch
+              size="small"
+              checked={!edit}
+              onChange={() => setEdit(prevEdit => !prevEdit)}
+            />}
+            label="edit"
+          />
         </Box>
         <Formik
           initialValues={{
             name: profile.name,
-            phonenumber: profile.phonenumber,
+            phonenumber: profile.phonenumber || '',
           }}
           validate={values => {
             const errors = {}

@@ -99,5 +99,7 @@ const statusHandler = (dispatch, response) => {
     logoutUser()
     dispatch({ type: userConstants.FAILURE })
     dispatch(setAlert('invalid token', 'error'))
+  } else {
+    window.location.reload()
   }
 }

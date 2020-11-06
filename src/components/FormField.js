@@ -16,7 +16,7 @@ import {
 
 export const FormikTextField = ({ label, ...props }) => {
   const [field, meta] = useField(props)
-  const errorText = meta.touched && meta.error ? meta.error : ''
+  const errorText = (meta.touched && meta.error && !props.disabled) ? meta.error : ''
 
   return (
     <TextField

@@ -10,24 +10,22 @@ const PasswordChange = ({ handleSubmit, hide }) => {
   return (
     <Card variant="outlined">
       <CardContent>
-        <Box paddingBottom={2}>
-          <Box
-            display="flex"
-            flexDirection="row"
-            justifyContent="space-between">
-            <Typography align="center" variant="h4">
-              Password
-            </Typography>
-            <Typography
-              style={{ cursor: 'pointer' }}
-              color="textSecondary"
-              variant="body2"
-              onClick={hide}>
-              cancel
-            </Typography>
-          </Box>
+        <Box
+          display="flex"
+          flexDirection="row"
+          justifyContent="space-between">
+          <Typography align="center" variant="h4">
+            Password
+          </Typography>
+          <Typography
+            style={{ cursor: 'pointer' }}
+            color="textSecondary"
+            variant="body2"
+            onClick={hide}>
+            cancel
+          </Typography>
         </Box>
-        <Typography color="textSecondary" variant="body2">
+        <Typography gutterBottom color="textSecondary" variant="body2">
           create a new password
         </Typography>
         <Formik
@@ -37,6 +35,8 @@ const PasswordChange = ({ handleSubmit, hide }) => {
             const requiredError = 'Field is required'
             if (!values.password) {
               errors.password = requiredError
+            } else if (values.password.length < 3) {
+              errors.password = 'Invalid password'
             }
             if (!values.passwordConfirm) {
               errors.passwordConfirm = requiredError

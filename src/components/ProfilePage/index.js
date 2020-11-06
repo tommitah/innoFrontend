@@ -31,27 +31,34 @@ const Profile = () => {
       <Typography style={{ padding: '1rem' }} align="center" variant="h4">
         User information
       </Typography>
-      <Card style={{ marginBottom: '2em' }} variant="outlined">
-        <CardContent>
-          <Typography gutterBottom variant="h4">
-            General
-          </Typography>
-          <Typography color="textSecondary" variant="body2">
-            id: {user.profile.id} <br />
-            created: {user.profile.createdAt} <br />
-            email: {user.profile.email}
-          </Typography>
-        </CardContent>
-      </Card>
-      {data.role === Role.Worker &&
-        <WorkerProfile profile={user.profile} handleSubmit={updateUser} />}
-      {(data.role === Role.Agency ||
-        data.role === Role.Business) &&
-        <CompanyProfile profile={user.profile} handleSubmit={updateUser} />}
-      <Box paddingBottom={2} display="flex" justifyContent="center">
+      <Box paddingBottom={2}>
+        <Card variant="outlined">
+          <CardContent>
+            <Typography gutterBottom variant="h4">
+              General
+            </Typography>
+            <Typography color="textSecondary" variant="body2">
+              id: {user.profile.id} <br />
+              created: {user.profile.createdAt} <br />
+              email: {user.profile.email}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Box>
+      <Box paddingBottom={2}>
+        {data.role === Role.Worker &&
+          <WorkerProfile profile={user.profile} handleSubmit={updateUser} />}
+        {(data.role === Role.Agency ||
+          data.role === Role.Business) &&
+          <CompanyProfile profile={user.profile} handleSubmit={updateUser} />}
+      </Box>
+      <Box paddingBottom={2}>
         {display ?
           <PasswordChange handleSubmit={updateUser} hide={() => setDisplay(false)} /> :
-          <Button variant="outlined" onClick={() => setDisplay(prevDisplay => !prevDisplay)}>
+          <Button
+            style={{ display: 'block', margin: '0 auto' }}
+            variant="outlined"
+            onClick={() => setDisplay(prevDisplay => !prevDisplay)}>
             change password
           </Button>
         }

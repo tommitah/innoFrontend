@@ -53,21 +53,23 @@ const Drawer = ({ open, handleDrawer, loggedIn }) => {
               <ChevronLeft />
             </IconButton>
           </div>
-          <Divider />
-          <List disablePadding>
-            <ListItem button component={Link} to="/home">
-              <ListItemIcon><Home /></ListItemIcon>
-              <ListItemText primary="Home" />
-            </ListItem>
-            {loggedIn &&
-              <ListItem button component={Link} to="/profile">
-                <ListItemIcon><AccountCircle /></ListItemIcon>
-                <ListItemText primary="Profile" />
+          <div onClick={handleDrawer}>
+            <Divider />
+            <List disablePadding>
+              <ListItem button component={Link} to="/home">
+                <ListItemIcon><Home /></ListItemIcon>
+                <ListItemText primary="Home" />
               </ListItem>
-            }
-          </List>
+              {loggedIn &&
+                <ListItem button component={Link} to="/profile">
+                  <ListItemIcon><AccountCircle /></ListItemIcon>
+                  <ListItemText primary="Profile" />
+                </ListItem>
+              }
+            </List>
+          </div>
         </div>
-        <div>
+        <div onClick={handleDrawer}>
           <Divider />
           {loggedIn ?
             <ListItem button onClick={() => dispatch(logout())}>
