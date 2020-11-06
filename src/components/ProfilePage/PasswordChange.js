@@ -19,6 +19,7 @@ const PasswordChange = ({ handleSubmit, hide }) => {
               Password
             </Typography>
             <Typography
+              style={{ cursor: 'pointer' }}
               color="textSecondary"
               variant="body2"
               onClick={hide}>
@@ -26,6 +27,9 @@ const PasswordChange = ({ handleSubmit, hide }) => {
             </Typography>
           </Box>
         </Box>
+        <Typography color="textSecondary" variant="body2">
+          create a new password
+        </Typography>
         <Formik
           initialValues={{ password: '', passwordConfirm: '' }}
           validate={values => {
