@@ -73,7 +73,7 @@ const update = async (updateData, role) => {
       case Role.Agency:
         return await axios.put(`${baseUrl}/agencies`, updateData, authHeader())
       case Role.Business:
-        return await axios.put(`${baseUrl}/business`, updateData, authHeader())
+        return await axios.put(`${baseUrl}/businesses`, updateData, authHeader())
       default:
         return Promise.reject({ status: 500 })
     }
