@@ -8,6 +8,15 @@ import {
 } from '@material-ui/core'
 import { Menu as MenuIcon } from '@material-ui/icons'
 
+/**
+ * AppBar component, works as header for the whole page.
+ * @exports components/AppBar
+ * @param {Object} props
+ * @param {function} props.handleDrawer - [Function]{@link module:App~handleDrawer}
+ * for opening and closing a [drawer component]{@link module:components/Drawer}
+ * @example
+ * <AppBar handleDrawer={...} />
+ */
 const AppBar = ({ handleDrawer }) => {
   return (
     <MUIAppBar position="fixed">

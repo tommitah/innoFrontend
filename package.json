@@ -34,7 +34,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint .",
-    "lint-and-fix": "eslint . --ext .js --fix"
+    "lint-and-fix": "eslint . --ext .js --fix",
+    "docs": "rm -rf docs && jsdoc -c jsdoc.json"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -53,6 +54,7 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.14",
-    "eslint-plugin-jest": "^24.0.2"
+    "eslint-plugin-jest": "^24.0.2",
+    "jsdoc": "^3.6.6"
   }
 }

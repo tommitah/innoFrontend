@@ -35,6 +35,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+/**
+ * Drawer component. Works as a sidebar for the whole page.
+ * @exports components/Drawer
+ * @param {Object} props
+ * @param {boolean} props.open - If true drawer is displayed (open), otherwise drawer is closed
+ * @param {function} props.handleDrawer - [Function]{@link module:App~handleDrawer}
+ * for opening and closing this component (drawer)
+ * @param {boolean} [props.loggedIn] - If true user is logged into app
+ * @example
+ * const [open, setOpen] = useState(false)
+ * <Drawer open={ open } handleDrawer={ () => setOpen(prevOpen => !prevOpen)) } loggedIn={...} />
+ */
 const Drawer = ({ open, handleDrawer, loggedIn }) => {
   const classes = useStyles()
   const dispatch = useDispatch()

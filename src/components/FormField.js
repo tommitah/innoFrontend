@@ -14,6 +14,24 @@ import {
   FormControlLabel
 } from '@material-ui/core'
 
+/**
+ * Formik text input field. Uses material ui TextField component.
+ * Used inside Formik and Form that are imported form 'formik'.
+ * @exports components/FormikTextField
+ * @param {Object} props
+ * @param {string} props.label - Field label
+ * @param {string} props.name - Field name
+ * @param {("text"|"password")} props.type - Text field types that should be used
+ * @param {string} [props.placeholder] - Field placeholder value
+ * @param {boolean} [props.disabled] - If true text field is disabled
+ * @param {("filled"|"outlined"|"standard")} [props.variant=standard] - All available text field styles
+ * @example
+ * <Formik>
+ *  <Form>
+ *    <FormikTextField label="Email" name="email" type="text" />
+ *  </Form>
+ * </Formik>
+ */
 export const FormikTextField = ({ label, ...props }) => {
   const [field, meta] = useField(props)
   const errorText = (meta.touched && meta.error && !props.disabled) ? meta.error : ''
@@ -39,6 +57,27 @@ FormikTextField.propTypes = {
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard'])
 }
 
+/**
+ * Formik select input field. Uses material ui.
+ * Used inside Formik and Form that are imported from 'formik'.
+ * @exports components/FormikSelectField
+ * @param {Object} props
+ * @param {string} props.label - Field label
+ * @param {string} props.name - Field name
+ * @param {Object[]} props.options - All available fields shown in dropdown menu
+ * @param {(string|number)} props.options.value - Option value (value that is sent to API)
+ * @param {string} [props.options.label] - Option label (shown to user)
+ * @example
+ * <Formik>
+ *  <Form>
+ *    <FormikSelectField
+ *      label="Role"
+ *      name="role"
+ *      options={[{ value: 'worker', label: 'Worker' }, ... ]}
+ *    />
+ *  </Form>
+ * </Formik>
+ */
 export const FormikSelectField = ({ options, label, ...props }) => {
   const [field, meta] = useField(props)
   const errorText = meta.touched && meta.error ? meta.error : ''
@@ -73,6 +112,27 @@ FormikSelectField.propTypes = {
   })).isRequired
 }
 
+/**
+ * Formik radio input field. Uses material ui.
+ * Used inside Formik and Form that are imported from 'formik'.
+ * @exports components/FormikRadioField
+ * @param {Object} props
+ * @param {string} props.label - Field label
+ * @param {string} props.name - Field name
+ * @param {Object[]} props.options - All available fields shown in dropdown menu
+ * @param {(string|number)} props.options.value - Option value (value that is sent to API)
+ * @param {string} [props.options.label] - Option label (shown to user)
+ * @example
+ * <Formik>
+ *  <Form>
+ *    <FormikRadioField
+        label="Role"
+        name="role"
+        options={[{ value: 'worker', label: 'Worker' }, ... ]}
+      />
+ *  </Form>
+ * </Formik>
+ */
 export const FormikRadioField = ({ options, label, ...props }) => {
   const [field, meta] = useField(props)
   const errorText = meta.touched && meta.error ? meta.error : ''

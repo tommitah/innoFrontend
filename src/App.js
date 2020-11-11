@@ -19,6 +19,10 @@ import {
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 
+/**
+ * App component, main react component which acts as a container for all the other components.
+ * @exports App
+ */
 const App = () => {
   const loggedIn = useSelector(state => state.user.loggedIn)
   const alert = useSelector(state => state.alert)
@@ -31,6 +35,12 @@ const App = () => {
     }
   }
 
+  /**
+   * Function for opening and closing drawer component.
+   * Passed as prop to [AppBar]{@link module:components/AppBar} and
+   * [Drawer]{@link module:components/Drawer}.
+   * @function
+   */
   const handleDrawer = () => {
     setOpen(prevOpen => !prevOpen)
   }
