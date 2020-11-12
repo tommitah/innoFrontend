@@ -1,14 +1,25 @@
 import React, { useState } from 'react'
-import { Formik, Form } from 'formik'
+import { Formik, Form, FieldArray } from 'formik'
 import PropTypes from 'prop-types'
+import * as Yup from 'yup'
 
 import { FormikTextField } from '../FormField'
 
-import { Card, CardContent, Typography, Button, Box, FormControlLabel, Switch } from '@material-ui/core'
+import {
+  Card,
+  CardContent,
+  Typography,
+  Button,
+  Box,
+  FormControlLabel,
+  Switch,
+  IconButton,
+} from '@material-ui/core'
+import { Delete as DeleteIcon, Add as AddIcon } from '@material-ui/icons'
 
 const WorkerProfile = ({ profile, handleSubmit }) => {
   const [edit, setEdit] = useState(true)
-
+  //lupien tekeminen, luvan nimi ja aika
   return (
     <Card variant="outlined">
       <CardContent>
@@ -33,28 +44,24 @@ const WorkerProfile = ({ profile, handleSubmit }) => {
           initialValues={{
             name: profile.name,
             phonenumber: profile.phonenumber || '',
+            licenses: profile.licenses || []
           }}
-          validate={values => {
-            const errors = {}
-            const phoneRegExp = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/g
-            const requiredError = 'Field is required'
-            if (!values.name) {
-              errors.name = requiredError
-            } else if (values.name.length < 3) {
-              errors.name = 'Invalid name'
-            }
-            if (!values.phonenumber) {
-              errors.phonenumber = requiredError
-            } else if (!phoneRegExp.test(values.phonenumber)) {
-              errors.phonenumber = 'Invalid phone number'
-            }
-            return errors
-          }}
+          validationSchema={
+            Yup.object().shape({
+              name: Yup.string().min(3).required('required'),
+              phonenumber: Yup.string()
+                .matches(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/g, 'Not a valid phonenumber'),
+              licenses: Yup.array().of(
+                Yup.string().min(4).required('required')
+              )
+            })
+          }
           onSubmit={(values) => {
             setEdit(prevEdit => !prevEdit)
             handleSubmit(values)
+            console.log(values)
           }}>
-          {({ isValid, dirty }) => (
+          {({ isValid, dirty, values }) => (
             <Form>
               <Box
                 display="flex"
@@ -73,6 +80,48 @@ const WorkerProfile = ({ profile, handleSubmit }) => {
                   placeholder="12342"
                   disabled={edit}
                 />
+                <FieldArray name="licenses">
+                  {arrayHelpers => (
+                    <Box
+                      display="flex"
+                      flexDirection="column"
+                      paddingBottom={2}>
+                      <Box display="flex"
+                        flexDirection="row"
+                        justifyContent="space-between"
+                        alignItems="center">
+                        <Typography variant="h5">
+                          Licenses
+                        </Typography>
+                        <IconButton
+                          disabled={edit}
+                          color="secondary"
+                          onClick={() => arrayHelpers.push('')}>
+                          <AddIcon />
+                        </IconButton>
+                      </Box>
+                      {values.licenses.map((license, index) => (
+                        <Box key={index}
+                          display="flex"
+                          flexDirection="row"
+                          alignItems="center">
+                          <FormikTextField
+                            label="Name"
+                            name={`licenses.${index}`}
+                            type="text"
+                            disabled={edit}
+                            fullWidth
+                          />
+                          <IconButton
+                            disabled={edit}
+                            onClick={() => arrayHelpers.remove(index)}>
+                            <DeleteIcon />
+                          </IconButton>
+                        </Box>
+                      ))}
+                    </Box>
+                  )}
+                </FieldArray>
                 <Button
                   type="submit"
                   disabled={!dirty || !isValid || edit}
