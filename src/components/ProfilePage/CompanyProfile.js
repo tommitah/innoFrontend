@@ -38,7 +38,7 @@ const CompanyProfile = ({ profile, handleSubmit }) => {
             name: profile.name
             /* Todo: Contacts - What and why does it contain?
             contacts: profile.contacts || '', */
-            ,securityofficer: profile.securityofficer || ''
+            ,securityofficer: profile.securityOfficer || ''
             ,phonenumber: profile.phonenumber || ''
             ,address: profile.address || ''
             ,postnumber: profile.postnumber || ''
@@ -96,7 +96,7 @@ const CompanyProfile = ({ profile, handleSubmit }) => {
                 /> */}
                 <FormikTextField
                   label="Security Officer"
-                  name="securityofficer"
+                  name="securityOfficer"
                   type="text"
                   placeholder="Jarmo Testaaja jarmo.testaaja@company.com"
                   disabled={edit}
@@ -155,8 +155,7 @@ CompanyProfile.propTypes = {
     name: PropTypes.string.isRequired
     /* Todo: Contacts - What and why does it contain?
     ,contacts: PropTypes.string */
-    /* Todo: Security Officer not established in the backend
-    ,securityofficer: PropTypes.string */
+    ,securityOfficer: PropTypes.string
     ,phonenumber: PropTypes.string
     ,address: PropTypes.string
     ,postnumber: PropTypes.string
