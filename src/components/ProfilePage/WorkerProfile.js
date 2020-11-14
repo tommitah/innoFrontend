@@ -19,7 +19,7 @@ import { Delete as DeleteIcon, Add as AddIcon } from '@material-ui/icons'
 
 const WorkerProfile = ({ profile, handleSubmit }) => {
   const [edit, setEdit] = useState(true)
-  //lupien tekeminen, luvan nimi ja aika
+
   return (
     <Card variant="outlined">
       <CardContent>
@@ -59,9 +59,8 @@ const WorkerProfile = ({ profile, handleSubmit }) => {
           onSubmit={(values) => {
             setEdit(prevEdit => !prevEdit)
             handleSubmit(values)
-            console.log(values)
           }}>
-          {({ isValid, dirty, values }) => (
+          {({ isValid, dirty, values, errors }) => (
             <Form>
               <Box
                 display="flex"
@@ -94,7 +93,7 @@ const WorkerProfile = ({ profile, handleSubmit }) => {
                           Licenses
                         </Typography>
                         <IconButton
-                          disabled={edit}
+                          disabled={edit || !!errors.licenses}
                           color="secondary"
                           onClick={() => arrayHelpers.push('')}>
                           <AddIcon />
