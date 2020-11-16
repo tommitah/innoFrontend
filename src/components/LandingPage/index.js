@@ -10,6 +10,8 @@ import './landingPage.css'
 
 import { Box, Button, Divider, Grid } from '@material-ui/core'
 
+import { useTranslation } from 'react-i18next'
+
 const LandingPage = () => {
   const [logInForm, setLogInForm] = useState(false)
   const location = useLocation()
@@ -24,6 +26,8 @@ const LandingPage = () => {
     const { from } = location.state || { from: { pathname: '/home' } }
     dispatch(login(credentials, role, from))
   }
+
+  const { t } = useTranslation()
 
   return (
     <Box
@@ -54,13 +58,13 @@ const LandingPage = () => {
             variant="outlined"
             color="secondary"
             onClick={() => setLogInForm(prevLogInForm => !prevLogInForm)}>
-            {logInForm ? 'Log In' : 'Sign Up'}
+            {logInForm ? t('log_in') : t('sign_up')}
           </Button>
         </Grid>
         <Divider flexItem orientation="vertical" />
         <Grid item xs>
           <Button component={RouterLink} to="/home">
-            go to main page
+            {t('main_page')}
           </Button>
         </Grid>
       </Grid>
