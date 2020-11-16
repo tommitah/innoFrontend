@@ -38,7 +38,7 @@ const CompanyProfile = ({ profile, handleSubmit }) => {
             name: profile.name
             /* Todo: Contacts - What and why does it contain?
             contacts: profile.contacts || '', */
-            ,securityofficer: profile.securityOfficer || ''
+            ,securityOfficer: profile.securityOfficer || ''
             ,phonenumber: profile.phonenumber || ''
             ,address: profile.address || ''
             ,postnumber: profile.postnumber || ''
@@ -142,10 +142,6 @@ const CompanyProfile = ({ profile, handleSubmit }) => {
         </Formik>
       </CardContent>
     </Card>
-    // <div>
-    //   <p>agency/business</p>
-    //   <p>{JSON.stringify(profile)}</p>
-    // </div>
   )
 }
 
