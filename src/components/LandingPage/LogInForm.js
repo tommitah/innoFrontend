@@ -22,7 +22,7 @@ const LogInForm = ({ loggingIn, handleSubmit }) => {
   return (
     <Card variant="outlined">
       <CardContent>
-        <Typography align="center" variant="h4">
+        <Typography align="center" variant="h4" gutterBottom>
           {t('log_in')}
         </Typography>
         <Formik

@@ -53,7 +53,7 @@ const LandingPage = () => {
         style={{ textAlign: 'center' }}
         container
         alignItems="center">
-        <Grid item xs>
+        <Grid item xs style={{ padding: '0 1em' }}>
           <Button
             variant="outlined"
             color="secondary"
@@ -62,7 +62,7 @@ const LandingPage = () => {
           </Button>
         </Grid>
         <Divider flexItem orientation="vertical" />
-        <Grid item xs>
+        <Grid item xs style={{ padding: '0 1em' }}>
           <Button component={RouterLink} to="/home">
             {t('main_page')}
           </Button>
