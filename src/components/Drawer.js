@@ -5,6 +5,9 @@ import { useDispatch } from 'react-redux'
 
 import { logout } from '../_actions/userActions'
 
+import i18n from '../i18nextInit'
+import { useTranslation } from 'react-i18next'
+
 import {
   Divider,
   Drawer as MUIDrawer,
@@ -51,6 +54,11 @@ const Drawer = ({ open, handleDrawer, loggedIn }) => {
   const classes = useStyles()
   const dispatch = useDispatch()
 
+  const { t } = useTranslation()
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng)
+  }
+
   return (
     <MUIDrawer
       anchor="left"
@@ -64,13 +72,13 @@ const Drawer = ({ open, handleDrawer, loggedIn }) => {
             <IconButton onClick={handleDrawer}>
               <ChevronLeft />
             </IconButton>
-          </div>
+          </div >
           <div onClick={handleDrawer}>
             <Divider />
             <List disablePadding>
               <ListItem button component={Link} to="/home">
                 <ListItemIcon><Home /></ListItemIcon>
-                <ListItemText primary="Home" />
+                <ListItemText primary={t('home')} />
               </ListItem>
               {loggedIn &&
                 <ListItem button component={Link} to="/profile">
@@ -82,15 +90,19 @@ const Drawer = ({ open, handleDrawer, loggedIn }) => {
           </div>
         </div>
         <div onClick={handleDrawer}>
+          <button onClick={() => changeLanguage('fi')}>fi</button>
+          <button onClick={() => changeLanguage('en')}>en</button>
+        </div>
+        <div>
           <Divider />
           {loggedIn ?
             <ListItem button onClick={() => dispatch(logout())}>
               <ListItemIcon><ExitToApp /></ListItemIcon>
-              <ListItemText primary="Logout" />
+              <ListItemText primary={t('logout')} />
             </ListItem> :
             <ListItem button component={Link} to="/">
               <ListItemIcon><ExitToApp /></ListItemIcon>
-              <ListItemText primary="Login" secondary="Signup" />
+              <ListItemText primary={t('log_in')} secondary={t('sign_up')} />
             </ListItem>
           }
         </div>

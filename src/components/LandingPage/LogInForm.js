@@ -6,29 +6,35 @@ import { FormikTextField, FormikRadioField } from '../FormField'
 
 import { Card, CardContent, Typography, Button, Box, CircularProgress } from '@material-ui/core'
 
+//HK
+import { useTranslation } from 'react-i18next'
+
 const LogInForm = ({ loggingIn, handleSubmit }) => {
+
+  const { t } = useTranslation()
+
   const roleOptions = [
-    { value: 'worker', label: 'Worker' },
-    { value: 'agency', label: 'Agency' },
-    { value: 'business', label: 'Business' }
+    { value: 'worker', label: t('worker') },
+    { value: 'agency', label: t('agency') },
+    { value: 'business', label: t('business') }
   ]
 
   return (
     <Card variant="outlined">
       <CardContent>
         <Typography align="center" variant="h4">
-          Log In
+          {t('log_in')}
         </Typography>
         <Formik
           initialValues={{ email: '', password: '', role: '' }}
           validate={values => {
             const errors = {}
             const emailRegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
-            const requiredError = 'Field is required'
+            const requiredError = t('field_required')
             if (!values.email) {
               errors.email = requiredError
             } else if (!emailRegExp.test(values.email)) {
-              errors.email = 'Invalid email address'
+              errors.email = t('invalid_email_address')
             }
             if (!values.password) {
               errors.password = requiredError
@@ -47,18 +53,18 @@ const LogInForm = ({ loggingIn, handleSubmit }) => {
                 display="flex"
                 flexDirection="column">
                 <FormikRadioField
-                  label="Role"
+                  label={t('role')}
                   name="role"
                   options={roleOptions}
                 />
                 <FormikTextField
-                  label="Email"
+                  label={t('email_label')}
                   name="email"
                   type="text"
                   placeholder="test@test.com"
                 />
                 <FormikTextField
-                  label="Password"
+                  label={t('password')}
                   name="password"
                   type="password"
                   placeholder="jorma123"
@@ -68,7 +74,7 @@ const LogInForm = ({ loggingIn, handleSubmit }) => {
                   disabled={!dirty || !isValid || loggingIn}
                   variant="contained"
                   color="primary">
-                  {loggingIn ? <CircularProgress size={24} /> : 'submit'}
+                  {loggingIn ? <CircularProgress size={24} /> : t('submit')}
                 </Button>
               </Box>
             </Form>

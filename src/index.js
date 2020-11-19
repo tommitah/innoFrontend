@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import { Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
+import './i18nextInit'
+
 import App from './App'
 import store from './_utils/store'
 import history from './_utils/history'
