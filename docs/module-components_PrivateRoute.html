@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: components/FormikSelectField</title>
+    <title>JSDoc: Module: components/PrivateRoute</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: components/FormikSelectField</h1>
+    <h1 class="page-title">Module: components/PrivateRoute</h1>
 
     
 
@@ -38,8 +38,10 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>Formik select input field. Uses material ui.
-Used inside Formik and Form that are imported from 'formik'.</p></div>
+            <div class="description"><p>Private route component. Renders the child components if the user is logged in
+(and in an authorized role for the route). If the user isn't logged in they are
+redirected to the landing page (login/signup). If the user is logged in but doesn't have
+the correct role, they are redirected to the home page. Used inside Switch component that is imported from 'react-router-dom'.</p></div>
         
 
         
@@ -110,94 +112,6 @@ Used inside Formik and Form that are imported from 'formik'.</p></div>
         <th>Type</th>
 
         
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>label</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Field label</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Field name</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;Object></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>All available fields shown in dropdown menu</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
         <th>Attributes</th>
         
 
@@ -212,16 +126,16 @@ Used inside Formik and Form that are imported from 'formik'.</p></div>
 
         <tr>
             
-                <td class="name"><code>value</code></td>
+                <td class="name"><code>loggedIn</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">boolean</span>
 |
 
-<span class="param-type">number</span>
+<span class="param-type">undefined</span>
 
 
             
@@ -239,14 +153,76 @@ Used inside Formik and Form that are imported from 'formik'.</p></div>
 
             
 
-            <td class="description last"><p>Option value (value that is sent to API)</p></td>
+            <td class="description last"><p>User's loggedIn status. Can be undefined if user isn't loggedIn.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>label</code></td>
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Route's path</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>children</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">node</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Components that the route renders.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>role</code></td>
             
 
             <td class="type">
@@ -272,14 +248,47 @@ Used inside Formik and Form that are imported from 'formik'.</p></div>
 
             
 
-            <td class="description last"><p>Option label (shown to user)</p></td>
+            <td class="description last"><p>Required if private route is role specific. User's current role.</p></td>
         </tr>
 
     
-    </tbody>
-</table>
 
+        <tr>
+            
+                <td class="name"><code>roles</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">"worker"</span>
+|
+
+<span class="param-type">"business"</span>
+|
+
+<span class="param-type">"agency"</span>
+
+
+            
             </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Required if private route is role specific.
+Roles that are authorized.</p></td>
         </tr>
 
     
@@ -327,7 +336,7 @@ Used inside Formik and Form that are imported from 'formik'.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_FormField.js.html">components/FormField.js</a>, <a href="components_FormField.js.html#line81">line 81</a>
+        <a href="components_PrivateRoute.js.html">components/PrivateRoute.js</a>, <a href="components_PrivateRoute.js.html#line32">line 32</a>
     </li></ul></dd>
     
 
@@ -358,7 +367,7 @@ Used inside Formik and Form that are imported from 'formik'.</p></div>
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>&lt;Formik> &lt;Form>   &lt;FormikSelectField     label="Role"     name="role"     options={[{ value: 'worker', label: 'Worker' }, ... ]}   /> &lt;/Form>&lt;/Formik></code></pre>
+    <pre class="prettyprint"><code>&lt;Switch> &lt;PrivateRoute path="/profile" loggedIn={ loggedIn }>   &lt;ProfilePage /> &lt;/PrivateRoute> &lt;PrivateRoute   path="/workers"   role={ data ? data.role : undefined }   roles={ [Role.Business, Role.Agency] }   loggedIn={ loggedIn }>   &lt;WorkersPage /> &lt;/PrivateRoute>&lt;/Switch></code></pre>
 
 
 

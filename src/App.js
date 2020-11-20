@@ -10,6 +10,7 @@ import Drawer from './components/Drawer'
 import AppBar from './components/AppBar'
 
 import { clearAlert } from './_actions/alertActions'
+import Role from './_utils/role'
 
 import {
   CssBaseline,
@@ -24,7 +25,7 @@ import { Alert } from '@material-ui/lab'
  * @exports App
  */
 const App = () => {
-  const loggedIn = useSelector(state => state.user.loggedIn)
+  const { loggedIn, data } = useSelector(state => state.user)
   const alert = useSelector(state => state.alert)
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
@@ -73,6 +74,13 @@ const App = () => {
           </Route>
           <PrivateRoute path="/profile" loggedIn={loggedIn}>
             <ProfilePage />
+          </PrivateRoute>
+          <PrivateRoute
+            path="/workers"
+            role={data ? data.role : undefined}
+            roles={[Role.Business, Role.Agency]}
+            loggedIn={loggedIn}>
+            <p>workers</p>
           </PrivateRoute>
           <Redirect from="*" to="/home" />
         </Switch>

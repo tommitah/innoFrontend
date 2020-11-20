@@ -80,6 +80,10 @@ const Drawer = ({ open, handleDrawer, loggedIn }) => {
                   <ListItemText primary="Profile" />
                 </ListItem>
               }
+              <ListItem button component={Link} to="/workers">
+                <ListItemIcon><AccountCircle /></ListItemIcon>
+                <ListItemText primary="Workers" />
+              </ListItem>
             </List>
           </div>
         </div>
