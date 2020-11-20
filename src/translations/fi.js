@@ -13,6 +13,8 @@ export default {
   password: 'Salasana',
   confirm: 'Varmista salasana',
   user: 'Käyttäjä',
+  terms_of_use: 'Rekisteröitymällä hyväksyt tietojen lähetyksen ',
+  terms_agency: 'vuokrayrityksille',
   //error
   invalid_email: 'Virheellinen sähköpostiosoite',
   field_required: 'Pakollinen kenttä',

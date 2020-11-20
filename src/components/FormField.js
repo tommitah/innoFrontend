@@ -88,7 +88,6 @@ export const FormikSelectField = ({ options, label, ...props }) => {
       error={!!errorText}>
       <InputLabel id={props.id || props.name}>{label}</InputLabel>
       <Select {...field} >
-        <MenuItem disabled value="">Select a value</MenuItem>
         {options.map(option => (
           <MenuItem key={option.value} value={option.value}>
             {option.label || option.value}

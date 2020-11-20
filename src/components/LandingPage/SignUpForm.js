@@ -1,14 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Formik, Form } from 'formik'
 import PropTypes from 'prop-types'
 
 import { FormikTextField, FormikSelectField } from '../FormField'
+import SignUpModal from './SignUpModal'
 
-import { Card, CardContent, Typography, Button, Box, CircularProgress } from '@material-ui/core'
+import {
+  Card,
+  CardContent,
+  Typography,
+  Button,
+  Box,
+  CircularProgress,
+  Link
+} from '@material-ui/core'
 
 import { useTranslation } from 'react-i18next'
 
 const SignUpForm = ({ loggingIn, handleSubmit }) => {
+  const [open, setOpen] = useState(false)
   const { t } = useTranslation()
 
   const roleOptions = [
@@ -99,6 +109,15 @@ const SignUpForm = ({ loggingIn, handleSubmit }) => {
                   name="role"
                   options={roleOptions}
                 />
+                <Typography gutterBottom variant="body2" color="textSecondary">
+                  {t('terms_of_use')}<Link
+                    style={{ cursor: 'pointer' }}
+                    variant="body2"
+                    onClick={() => setOpen(true)}>
+                    {t('terms_agency')}
+                  </Link>
+                </Typography>
+                <SignUpModal open={open} handleClose={() => setOpen(false)} />
                 <Button
                   type="submit"
                   disabled={!dirty || !isValid || loggingIn}

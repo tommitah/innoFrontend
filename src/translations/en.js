@@ -13,6 +13,8 @@ export default {
   password: 'Password',
   confirm: 'Confirm password',
   user: 'User',
+  terms_of_use: 'By registering, you agree to give your information to ',
+  terms_agency: 'agencies',
   //error
   invalid_email: 'Invalid email address',
   field_required: 'Field is required',
