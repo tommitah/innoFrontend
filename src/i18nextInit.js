@@ -38,4 +38,8 @@ i18n
     }
   })
 
+export const getCurrentLocale = () => {
+  return i18n.languages[0]
+}
+
 export default i18n

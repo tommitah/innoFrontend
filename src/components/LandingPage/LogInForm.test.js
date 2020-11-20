@@ -17,10 +17,10 @@ describe('<LogInForm />', () => {
   })
 
   test('renders content', () => {
-    expect(component.container).toHaveTextContent('Log In')
-    expect(component.container).toHaveTextContent('Role')
-    expect(component.container).toHaveTextContent('Email')
-    expect(component.container).toHaveTextContent('Password')
+    expect(component.container).toHaveTextContent('log_in')
+    expect(component.container).toHaveTextContent('role')
+    expect(component.container).toHaveTextContent('email')
+    expect(component.container).toHaveTextContent('password')
   })
 
   test('updates state and calls submit', async () => {

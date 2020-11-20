@@ -2,11 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 import { logout } from '../_actions/userActions'
-
-import i18n from '../i18nextInit'
-import { useTranslation } from 'react-i18next'
 
 import {
   Divider,
@@ -53,11 +51,7 @@ const useStyles = makeStyles((theme) => ({
 const Drawer = ({ open, handleDrawer, loggedIn }) => {
   const classes = useStyles()
   const dispatch = useDispatch()
-
   const { t } = useTranslation()
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng)
-  }
 
   return (
     <MUIDrawer
@@ -72,7 +66,7 @@ const Drawer = ({ open, handleDrawer, loggedIn }) => {
             <IconButton onClick={handleDrawer}>
               <ChevronLeft />
             </IconButton>
-          </div >
+          </div>
           <div onClick={handleDrawer}>
             <Divider />
             <List disablePadding>
@@ -90,10 +84,6 @@ const Drawer = ({ open, handleDrawer, loggedIn }) => {
           </div>
         </div>
         <div onClick={handleDrawer}>
-          <button onClick={() => changeLanguage('fi')}>fi</button>
-          <button onClick={() => changeLanguage('en')}>en</button>
-        </div>
-        <div>
           <Divider />
           {loggedIn ?
             <ListItem button onClick={() => dispatch(logout())}>

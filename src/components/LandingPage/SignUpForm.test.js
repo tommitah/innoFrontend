@@ -15,12 +15,12 @@ describe('<LogInForm />', () => {
   })
 
   test('renders content', () => {
-    expect(component.container).toHaveTextContent('Sign Up')
-    expect(component.container).toHaveTextContent('Name')
-    expect(component.container).toHaveTextContent('Email')
-    expect(component.container).toHaveTextContent('Password')
-    expect(component.container).toHaveTextContent('Confirm')
-    expect(component.container).toHaveTextContent('Role')
+    expect(component.container).toHaveTextContent('sign_up')
+    expect(component.container).toHaveTextContent('name')
+    expect(component.container).toHaveTextContent('email')
+    expect(component.container).toHaveTextContent('password')
+    expect(component.container).toHaveTextContent('confirm')
+    expect(component.container).toHaveTextContent('role')
   })
 
   test('updates state and calls submit', async () => {
