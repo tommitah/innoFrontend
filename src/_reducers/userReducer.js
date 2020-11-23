@@ -2,7 +2,7 @@ import { loadUser } from '../_utils/storage'
 import userConstants from '../_constants/userConstants'
 
 const userData = loadUser()
-const initialState = userData ? { loggedIn: true, data: userData } : {}
+const initialState = userData ? { loggedIn: true, data: userData } : { loggedIn: false, data: {} }
 
 const userReducer = (state = initialState, action) => {
   console.log('userReducer', action)
@@ -26,7 +26,7 @@ const userReducer = (state = initialState, action) => {
       }
     case userConstants.FAILURE:
     case userConstants.LOGOUT:
-      return {}
+      return { loggedIn: false, data: {} }
     default:
       return state
   }

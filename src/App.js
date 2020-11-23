@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import LandingPage from './components/LandingPage'
 import HomePage from './components/HomePage'
 import ProfilePage from './components/ProfilePage'
+import WorkersPage from './components/WorkersPage'
 import PrivateRoute from './components/PrivateRoute'
 import Drawer from './components/Drawer'
 import AppBar from './components/AppBar'
@@ -77,10 +78,10 @@ const App = () => {
           </PrivateRoute>
           <PrivateRoute
             path="/workers"
-            role={data ? data.role : undefined}
+            role={data.role}
             roles={[Role.Business, Role.Agency]}
             loggedIn={loggedIn}>
-            <p>workers</p>
+            <WorkersPage />
           </PrivateRoute>
           <Redirect from="*" to="/home" />
         </Switch>

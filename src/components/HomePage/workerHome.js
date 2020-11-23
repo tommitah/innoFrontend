@@ -68,7 +68,7 @@ const CompanyHome = () => {
             className={classes.clickableIcon}>
           </AssessmentIcon>
           <Grid item className={classes.textAlignAssignment}>
-            <Typography variant="h7">Perehdytys</Typography>
+            <Typography variant="body1">Perehdytys</Typography>
           </Grid>
         </Grid>
         <Grid item xs>
@@ -76,7 +76,7 @@ const CompanyHome = () => {
             className={classes.clickableIcon}>
           </AssignmentIcon>
           <Grid item className={classes.textAlignAssignment}>
-            <Typography variant="h7">Tehtävä-lista</Typography>
+            <Typography variant="body1">Tehtävä-lista</Typography>
           </Grid>
         </Grid>
         <Grid item xs>
@@ -84,7 +84,7 @@ const CompanyHome = () => {
             className={classes.clickableIcon}>
           </InsertDriveFileIcon>
           <Grid item className={classes.textAlignAssignment}>
-            <Typography variant="h7">Asiakirjat</Typography>
+            <Typography variant="body1">Asiakirjat</Typography>
           </Grid>
         </Grid>
         <Grid item xs>
@@ -92,7 +92,7 @@ const CompanyHome = () => {
             className={classes.clickableIcon}>
           </MessageIcon>
           <Grid item className={classes.textAlignAssignment}>
-            <Typography variant="h7">Viestit</Typography>
+            <Typography variant="body1">Viestit</Typography>
           </Grid>
         </Grid>
       </Grid>
