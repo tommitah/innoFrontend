@@ -53,7 +53,7 @@ const App = () => {
       <CssBaseline />
       <AppBar handleDrawer={handleDrawer} />
       <Toolbar />
-      <Drawer open={open} handleDrawer={handleDrawer} loggedIn={loggedIn} />
+      <Drawer open={open} handleDrawer={handleDrawer} loggedIn={loggedIn} role={data.role} />
       <Snackbar open={alert.open} onClose={handleSnackbarClose}>
         <Alert onClose={handleSnackbarClose} severity={alert.severity} variant="filled">
           {alert.message}

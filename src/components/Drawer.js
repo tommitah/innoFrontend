@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 import { logout } from '../_actions/userActions'
+import Role from '../_utils/role'
 
 import {
   Divider,
@@ -16,7 +17,7 @@ import {
   ListItemText,
   makeStyles,
 } from '@material-ui/core'
-import { ChevronLeft, Home, ExitToApp, AccountCircle } from '@material-ui/icons'
+import { ChevronLeft, Home, ExitToApp, AccountCircle, PeopleAlt } from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -44,11 +45,12 @@ const useStyles = makeStyles((theme) => ({
  * @param {function} props.handleDrawer - [Function]{@link module:App~handleDrawer}
  * for opening and closing this component (drawer)
  * @param {boolean} [props.loggedIn] - If true user is logged into app
+ * @param {string} [props.role] - User's current role.
  * @example
  * const [open, setOpen] = useState(false)
- * <Drawer open={ open } handleDrawer={ () => setOpen(prevOpen => !prevOpen)) } loggedIn={...} />
+ * <Drawer open={ open } handleDrawer={ () => setOpen(prevOpen => !prevOpen)) } loggedIn={...} role={...} />
  */
-const Drawer = ({ open, handleDrawer, loggedIn }) => {
+const Drawer = ({ open, handleDrawer, loggedIn, role }) => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const { t } = useTranslation()
@@ -80,10 +82,12 @@ const Drawer = ({ open, handleDrawer, loggedIn }) => {
                   <ListItemText primary="Profile" />
                 </ListItem>
               }
-              <ListItem button component={Link} to="/workers">
-                <ListItemIcon><AccountCircle /></ListItemIcon>
-                <ListItemText primary="Workers" />
-              </ListItem>
+              {(role === Role.Agency || role === Role.Business) &&
+                <ListItem button component={Link} to="/workers">
+                  <ListItemIcon><PeopleAlt /></ListItemIcon>
+                  <ListItemText primary="Workers" />
+                </ListItem>
+              }
             </List>
           </div>
         </div>
