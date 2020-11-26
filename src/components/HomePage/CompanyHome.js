@@ -3,18 +3,17 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Card,
-  Container,
   Typography,
   Paper,
   List,
   Grid
 } from '@material-ui/core'
-import { Message as MessageIcon, InsertDriveFile as InsertDriveFileIcon, Assignment as AssignmentIcon, Accessibility as AccessibilityIcon }  from '@material-ui/icons'
+import { Message as MessageIcon, InsertDriveFile as InsertDriveFileIcon, Assignment as AssignmentIcon, Accessibility as AccessibilityIcon } from '@material-ui/icons'
 
 const CompanyHome = () => {
 
-  const handlePageChange  = () => {
-    window.location.href='/home'
+  const handlePageChange = () => {
+    window.location.href = '/home'
   }
 
   const useStyles = makeStyles(({
@@ -44,7 +43,7 @@ const CompanyHome = () => {
   const classes = useStyles()
 
   return (
-    <Container>
+    <>
       <Card variant="outlined">
         <Paper
           elevation={5}
@@ -95,7 +94,7 @@ const CompanyHome = () => {
           </Grid>
         </Grid>
       </Grid>
-    </Container>
+    </>
   )
 }
 

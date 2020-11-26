@@ -6,10 +6,10 @@ import Role from '../../_utils/role'
 import WorkerHome from './WorkerHome'
 import CompanyHome from './CompanyHome'
 import VisitorHome from './VisitorHome'
+import PageLoading from '../PageLoading'
 
 import {
-  CircularProgress,
-  Box
+  Container
 } from '@material-ui/core'
 
 const Home = () => {
@@ -19,6 +19,7 @@ const Home = () => {
 
   // Can be used as a user validation (validates token and user role)
   // Run if user has a role
+  // Should be switched out when there is actual data to be retrieved
   useEffect(() => {
     if (data.role) {
       dispatch(me(data.role))
@@ -27,21 +28,20 @@ const Home = () => {
 
 
   if (user.loading) {
-    return <CircularProgress />
-  }
-
-  if (!user.loading && !data.role) {
-    return <VisitorHome />
+    return <PageLoading />
   }
 
   return (
-    <Box>
+    <Container maxWidth="md" disableGutters>
       {data.role === Role.Worker &&
         <WorkerHome />}
       {(data.role === Role.Agency ||
         data.role === Role.Business) &&
         <CompanyHome />}
-    </Box>
+      {!data.role &&
+        <VisitorHome />
+      }
+    </Container>
   )
 }
 

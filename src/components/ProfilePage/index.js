@@ -6,8 +6,16 @@ import Role from '../../_utils/role'
 import WorkerProfile from './WorkerProfile'
 import CompanyProfile from './CompanyProfile'
 import PasswordChange from './PasswordChange'
+import PageLoading from '../PageLoading'
 
-import { CircularProgress, Typography, Card, CardContent, Box, Button } from '@material-ui/core'
+import {
+  Typography,
+  Card,
+  CardContent,
+  Box,
+  Button,
+  Container
+} from '@material-ui/core'
 
 const Profile = () => {
   const [display, setDisplay] = useState(false)
@@ -23,11 +31,13 @@ const Profile = () => {
   }
 
   if (user.loading || !user.profile) {
-    return <CircularProgress />
+    return (
+      <PageLoading />
+    )
   }
 
   return (
-    <Box width="410px">
+    <Container maxWidth="sm">
       <Typography style={{ padding: '1rem' }} align="center" variant="h4">
         User information
       </Typography>
@@ -63,7 +73,7 @@ const Profile = () => {
           </Button>
         }
       </Box>
-    </Box>
+    </Container>
   )
 }
 

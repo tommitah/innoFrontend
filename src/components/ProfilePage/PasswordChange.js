@@ -18,7 +18,7 @@ const PasswordChange = ({ handleSubmit, hide }) => {
             Password
           </Typography>
           <Typography
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: 'pointer', height: 'min-content' }}
             color="textSecondary"
             variant="body2"
             onClick={hide}>
@@ -57,20 +57,24 @@ const PasswordChange = ({ handleSubmit, hide }) => {
                 <Box
                   display="flex"
                   flexDirection="row">
-                  <Box paddingRight={1}>
+                  <div style={{ padding: '0 5px', flexGrow: 1 }}>
                     <FormikTextField
                       label="Password"
                       name="password"
                       type="password"
                       placeholder="jorma123"
+                      fullWidth
                     />
-                  </Box>
-                  <FormikTextField
-                    label="Confirm"
-                    name="passwordConfirm"
-                    type="password"
-                    placeholder="jorma123"
-                  />
+                  </div>
+                  <div style={{ padding: '0 5px', flexGrow: 1 }}>
+                    <FormikTextField
+                      label="Confirm"
+                      name="passwordConfirm"
+                      type="password"
+                      placeholder="jorma123"
+                      fullWidth
+                    />
+                  </div>
                 </Box>
                 <Button
                   type="submit"

@@ -30,45 +30,52 @@ const LandingPage = () => {
   const { t } = useTranslation()
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      width="320px">
-      <SwitchTransition mode='out-in'>
-        <CSSTransition
-          key={logInForm}
-          addEndListener={(node, done) => {
-            node.addEventListener('transitionend', done, false)
-          }}
-          classNames='fade'>
-          <Box paddingBottom={2}>
-            {logInForm ?
-              <SignUpForm loggingIn={loggingIn} handleSubmit={signupSubmit} /> :
-              <LogInForm loggingIn={loggingIn} handleSubmit={loginSubmit} />
-            }
-          </Box>
-        </CSSTransition>
-      </SwitchTransition>
-      <Grid
-        style={{ textAlign: 'center' }}
-        container
-        alignItems="center">
-        <Grid item xs style={{ padding: '0 1em' }}>
-          <Button
-            variant="outlined"
-            color="secondary"
-            onClick={() => setLogInForm(prevLogInForm => !prevLogInForm)}>
-            {logInForm ? t('log_in') : t('sign_up')}
-          </Button>
+    <Grid
+      container
+      justify="center"
+      spacing={0}
+      alignItems="center"
+      style={{ minHeight: '100vh' }}>
+      <Box
+        display="flex"
+        flexDirection="column"
+        width="320px">
+        <SwitchTransition mode='out-in'>
+          <CSSTransition
+            key={logInForm}
+            addEndListener={(node, done) => {
+              node.addEventListener('transitionend', done, false)
+            }}
+            classNames='fade'>
+            <Box paddingBottom={2}>
+              {logInForm ?
+                <SignUpForm loggingIn={loggingIn} handleSubmit={signupSubmit} /> :
+                <LogInForm loggingIn={loggingIn} handleSubmit={loginSubmit} />
+              }
+            </Box>
+          </CSSTransition>
+        </SwitchTransition>
+        <Grid
+          style={{ textAlign: 'center' }}
+          container
+          alignItems="center">
+          <Grid item xs style={{ padding: '0 1em' }}>
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={() => setLogInForm(prevLogInForm => !prevLogInForm)}>
+              {logInForm ? t('log_in') : t('sign_up')}
+            </Button>
+          </Grid>
+          <Divider flexItem orientation="vertical" />
+          <Grid item xs style={{ padding: '0 1em' }}>
+            <Button component={RouterLink} to="/home">
+              {t('main_page')}
+            </Button>
+          </Grid>
         </Grid>
-        <Divider flexItem orientation="vertical" />
-        <Grid item xs style={{ padding: '0 1em' }}>
-          <Button component={RouterLink} to="/home">
-            {t('main_page')}
-          </Button>
-        </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </Grid>
   )
 }
 

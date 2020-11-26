@@ -16,8 +16,7 @@ import Role from './_utils/role'
 import {
   CssBaseline,
   Snackbar,
-  Toolbar,
-  Grid
+  Toolbar
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 
@@ -60,32 +59,25 @@ const App = () => {
           {alert.message}
         </Alert>
       </Snackbar>
-      <Grid
-        container
-        justify="center"
-        spacing={0}
-        alignItems="center"
-        style={{ minHeight: '100vh' }}>
-        <Switch>
-          <Route exact path="/">
-            {loggedIn ? <Redirect to="/home" /> : <LandingPage />}
-          </Route>
-          <Route path="/home">
-            <HomePage />
-          </Route>
-          <PrivateRoute path="/profile" loggedIn={loggedIn}>
-            <ProfilePage />
-          </PrivateRoute>
-          <PrivateRoute
-            path="/workers"
-            role={data.role}
-            roles={[Role.Business, Role.Agency]}
-            loggedIn={loggedIn}>
-            <WorkersPage />
-          </PrivateRoute>
-          <Redirect from="*" to="/home" />
-        </Switch>
-      </Grid>
+      <Switch>
+        <Route exact path="/">
+          {loggedIn ? <Redirect to="/home" /> : <LandingPage />}
+        </Route>
+        <Route path="/home">
+          <HomePage />
+        </Route>
+        <PrivateRoute path="/profile" loggedIn={loggedIn}>
+          <ProfilePage />
+        </PrivateRoute>
+        <PrivateRoute
+          path="/workers"
+          role={data.role}
+          roles={[Role.Business, Role.Agency]}
+          loggedIn={loggedIn}>
+          <WorkersPage />
+        </PrivateRoute>
+        <Redirect from="*" to="/home" />
+      </Switch>
     </>
   )
 }

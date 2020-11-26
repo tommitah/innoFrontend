@@ -3,18 +3,17 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Card,
-  Container,
   Typography,
   Paper,
   List,
   Grid
 } from '@material-ui/core'
-import { Assessment as AssessmentIcon, Message as MessageIcon, InsertDriveFile as InsertDriveFileIcon, Assignment as AssignmentIcon }  from '@material-ui/icons'
+import { Assessment as AssessmentIcon, Message as MessageIcon, InsertDriveFile as InsertDriveFileIcon, Assignment as AssignmentIcon } from '@material-ui/icons'
 
 const CompanyHome = () => {
 
-  const handlePageChange  = () => {
-    window.location.href='/home'
+  const handlePageChange = () => {
+    window.location.href = '/home'
   }
 
   const useStyles = makeStyles(({
@@ -25,7 +24,7 @@ const CompanyHome = () => {
       },
       width: 60,
       height: 60,
-    /*minWidth: 220, set space between icons*/
+      /*minWidth: 220, set space between icons*/
     },
     textAlignAssignment: {
       width: '5px',
@@ -45,7 +44,7 @@ const CompanyHome = () => {
   const classes = useStyles()
 
   return (
-    <Container>
+    <>
       <Card variant="outlined">
         <Paper
           elevation={5}
@@ -96,7 +95,7 @@ const CompanyHome = () => {
           </Grid>
         </Grid>
       </Grid>
-    </Container>
+    </>
   )
 }
 
