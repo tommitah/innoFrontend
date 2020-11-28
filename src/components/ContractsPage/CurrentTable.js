@@ -20,6 +20,7 @@ const SearchTable = ({ contracts, removeContract }) => {
             <TableCell>id</TableCell>
             <TableCell align="right">name</TableCell>
             <TableCell align="right">email</TableCell>
+            <TableCell align="right">accepted</TableCell>
             <TableCell align="right">remove</TableCell>
           </TableRow>
         </TableHead>
@@ -29,6 +30,7 @@ const SearchTable = ({ contracts, removeContract }) => {
               <TableCell component="th" scope="row">{contract.id}</TableCell>
               <TableCell align="right">{contract.name}</TableCell>
               <TableCell align="right">{contract.email}</TableCell>
+              <TableCell align="right">false</TableCell>
               <TableCell padding="none" align="right">
                 <IconButton
                   aria-label="remove from organization"

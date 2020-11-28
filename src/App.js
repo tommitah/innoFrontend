@@ -72,6 +72,8 @@ const App = () => {
         </PrivateRoute>
         <PrivateRoute
           path="/contracts"
+          role={data.role}
+          roles={[Role.Agency]}
           loggedIn={loggedIn}>
           <ContractsPage />
         </PrivateRoute>

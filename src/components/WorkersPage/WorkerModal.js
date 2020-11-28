@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import {
   Dialog,
@@ -8,11 +8,17 @@ import {
   Typography,
   Button,
   IconButton,
-  DialogActions
+  DialogActions,
+  InputLabel,
+  Select,
+  MenuItem,
+  FormControl
 } from '@material-ui/core'
 import { Close as CloseIcon } from '@material-ui/icons'
 
 const WorkerModal = ({ displayModal, closeModal, workerData }) => {
+  const [business, setBusiness] = useState('')
+
   return (
     <Dialog open={displayModal} onClose={closeModal} fullWidth>
       <DialogTitle>
@@ -33,6 +39,21 @@ const WorkerModal = ({ displayModal, closeModal, workerData }) => {
             email: {workerData.email}
           </Typography>
         }
+        <div style={{ padding: '1em 0' }}>
+          <FormControl variant="filled" fullWidth>
+            <InputLabel id="demo-simple-select-label">Business</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={business}
+              onChange={(event) => setBusiness(event.target.value)}
+            >
+              <MenuItem value="business">business</MenuItem>
+              <MenuItem value="business2">business2</MenuItem>
+              <MenuItem value="business3">business3</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
       </DialogContent>
       <DialogActions>
         <Button onClick={closeModal} color="primary" variant="outlined">
