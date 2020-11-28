@@ -12,13 +12,13 @@ import {
 } from '@material-ui/core'
 import { Close as CloseIcon } from '@material-ui/icons'
 
-const WorkerModal = ({ displayModal, closeModal, workerData }) => {
+const WorkerModal = ({ displayModal, closeModal, workerData, addContract }) => {
   return (
     <Dialog open={displayModal} onClose={closeModal} fullWidth>
       <DialogTitle>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Typography variant="h6">
-            Add to organization
+            Add to your organization
           </Typography>
           <IconButton onClick={closeModal}>
             <CloseIcon />
@@ -29,14 +29,15 @@ const WorkerModal = ({ displayModal, closeModal, workerData }) => {
         {workerData &&
           <Typography color="textSecondary" variant="body2">
             id: {workerData.id} <br />
+            name: {workerData.name} <br />
             created: {workerData.createdAt} <br />
             email: {workerData.email}
           </Typography>
         }
       </DialogContent>
       <DialogActions>
-        <Button onClick={closeModal} color="primary" variant="outlined">
-          Add worker
+        <Button onClick={addContract} color="primary" variant="outlined">
+          create contract
         </Button>
       </DialogActions>
     </Dialog>

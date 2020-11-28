@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import workersService from '../../_services/workersService'
+import contractsService from '../../_services/contractsService'
 
 import WorkerSearch from './WorkerSearch'
 import SearchTable from './SearchTable'
@@ -26,9 +26,9 @@ const WorkersPage = () => {
   const [displayModal, setDisplayModal] = useState(false)
   const classes = useStyles()
 
-  const fetchWorkers = async (input, searchType) => {
+  const fetchWorkers = async (input) => {
     // siirto reduxiin
-    const result = await workersService.searchWorkers(input, searchType)
+    const result = await contractsService.searchUsers(input, 'worker')
     setWorkers(result.data)
   }
 
@@ -45,7 +45,7 @@ const WorkersPage = () => {
       <Card className={classes.card} variant="outlined">
         <CardContent>
           <Typography gutterBottom variant="h5" align="center">
-            add workers
+            add workers to businesses
           </Typography>
           <WorkerSearch fetchWorkers={fetchWorkers} />
           <Divider />

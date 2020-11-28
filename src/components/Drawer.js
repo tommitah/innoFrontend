@@ -17,7 +17,14 @@ import {
   ListItemText,
   makeStyles,
 } from '@material-ui/core'
-import { ChevronLeft, Home, ExitToApp, AccountCircle, PeopleAlt } from '@material-ui/icons'
+import {
+  ChevronLeft,
+  Home,
+  ExitToApp,
+  AccountCircle,
+  PeopleAlt,
+  Contacts
+} from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -77,10 +84,16 @@ const Drawer = ({ open, handleDrawer, loggedIn, role }) => {
                 <ListItemText primary={t('home')} />
               </ListItem>
               {loggedIn &&
-                <ListItem button component={Link} to="/profile">
-                  <ListItemIcon><AccountCircle /></ListItemIcon>
-                  <ListItemText primary="Profile" />
-                </ListItem>
+                <>
+                  <ListItem button component={Link} to="/profile">
+                    <ListItemIcon><AccountCircle /></ListItemIcon>
+                    <ListItemText primary="Profile" />
+                  </ListItem>
+                  <ListItem button component={Link} to="/contracts">
+                    <ListItemIcon><Contacts /></ListItemIcon>
+                    <ListItemText primary="Contracts" />
+                  </ListItem>
+                </>
               }
               {(role === Role.Agency || role === Role.Business) &&
                 <ListItem button component={Link} to="/workers">
