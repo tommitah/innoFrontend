@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useState }  from 'react'
+import PropTypes from 'prop-types'
+
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -6,11 +8,38 @@ import {
   Typography,
   Paper,
   List,
-  Grid
+  Grid,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+
+
 } from '@material-ui/core'
-import { Assessment as AssessmentIcon, Message as MessageIcon, InsertDriveFile as InsertDriveFileIcon, Assignment as AssignmentIcon } from '@material-ui/icons'
+import {
+  Assessment as AssessmentIcon,
+  Message as MessageIcon,
+  InsertDriveFile as InsertDriveFileIcon,
+  Assignment as AssignmentIcon,
+  EmojiEmotions as InsertEmoticonIcon,
+  SentimentVerySatisfied as SentimentVerySatisfiedIcon,
+  MoodBad as MoodbadIcon,
+  SentimentSatisfied as SentimentSatisfiedIcon,
+  SentimentDissatisfied as SentimentDissatisfiedIcon,
+  SentimentVeryDissatisfied as SentimentVeryDissatisfiedIcon,
+} from '@material-ui/icons'
+
 
 const CompanyHome = () => {
+  const [open, setOpen] = useState(false)
+
+  const handleClickDialog = () => {
+    if(open) {
+      setOpen(false)
+    }
+    else {
+      setOpen(true)
+    }
+  }
 
   const handlePageChange = () => {
     window.location.href = '/home'
@@ -24,12 +53,25 @@ const CompanyHome = () => {
       },
       width: 60,
       height: 60,
-      /*minWidth: 220, set space between icons*/
+    },
+    clickableIconGreen: {
+      color: 'black',
+      '&:hover': {
+        color: 'green',
+      },
+      width: 60,
+      height: 60,
     },
     textAlignAssignment: {
       width: '5px',
       height: '15px',
-      textAlign: 'center'
+      textAlign: 'center',
+    },
+    emoticonTextAlignment: {
+      width: '5px',
+      height: '15px',
+      textAlign: 'center',
+      paddingLeft: '11px'
     },
     alignItemsAndJustifyContent: {
       width: '100%',
@@ -94,6 +136,35 @@ const CompanyHome = () => {
             <Typography variant="body1">Viestit</Typography>
           </Grid>
         </Grid>
+        <Grid item xs>
+          <InsertEmoticonIcon onClick={handleClickDialog}
+            className={classes.clickableIcon}>
+          </InsertEmoticonIcon>
+          <Grid item className={classes.emoticonTextAlignment}>
+            <Typography variant="body1">Fiilis</Typography>
+          </Grid>
+        </Grid>
+        <Dialog
+          aria-labelledby="form-dialog-title"
+          open={open}
+          onClose={handleClickDialog}
+        >
+          <DialogTitle>Tämänhetkinen fiilis:</DialogTitle>
+          <DialogContent>
+            <SentimentVerySatisfiedIcon onClick={handleClickDialog}
+              className={classes.clickableIconGreen}>
+            </SentimentVerySatisfiedIcon>
+            <SentimentSatisfiedIcon onClick={handleClickDialog}
+              className={classes.clickableIconGreen}>
+            </SentimentSatisfiedIcon>
+            <SentimentDissatisfiedIcon onClick={handleClickDialog}
+              className={classes.clickableIconGreen}>
+            </SentimentDissatisfiedIcon>
+            <SentimentVeryDissatisfiedIcon onClick={handleClickDialog}
+              className={classes.clickableIconGreen}>
+            </SentimentVeryDissatisfiedIcon>
+          </DialogContent>
+        </Dialog>
       </Grid>
     </>
   )

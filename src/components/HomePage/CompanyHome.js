@@ -8,7 +8,11 @@ import {
   List,
   Grid
 } from '@material-ui/core'
-import { Message as MessageIcon, InsertDriveFile as InsertDriveFileIcon, Assignment as AssignmentIcon, Accessibility as AccessibilityIcon } from '@material-ui/icons'
+import { Message as MessageIcon,
+  InsertDriveFile as InsertDriveFileIcon,
+  Assignment as AssignmentIcon,
+  Accessibility as AccessibilityIcon,
+} from '@material-ui/icons'
 
 const CompanyHome = () => {
 
