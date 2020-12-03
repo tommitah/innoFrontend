@@ -11,6 +11,13 @@ import {
 } from '@material-ui/core'
 import { Close as CloseIcon } from '@material-ui/icons'
 
+/**
+ * Modal for displaying terms of service and other same kind of stuff
+ * @exports components/LandingPage/SignUpModal
+ * @param {Object} props
+ * @param {boolean} props.open - Determines if modal is displayed
+ * @param {function} props.handleClose - Closes modal
+ */
 const SignUpModal = ({ open, handleClose }) => {
   return (
     <Dialog open={open} onClose={handleClose}>

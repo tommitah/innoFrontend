@@ -125,7 +125,8 @@ const Drawer = ({ open, handleDrawer, loggedIn, role }) => {
 Drawer.propTypes = {
   open: PropTypes.bool.isRequired,
   handleDrawer: PropTypes.func.isRequired,
-  loggedIn: PropTypes.bool
+  loggedIn: PropTypes.bool,
+  role: PropTypes.string
 }
 
 export default Drawer

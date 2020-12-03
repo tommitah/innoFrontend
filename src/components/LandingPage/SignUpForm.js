@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Formik, Form } from 'formik'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 
 import { FormikTextField, FormikSelectField } from '../FormField'
 import SignUpModal from './SignUpModal'
@@ -15,8 +16,13 @@ import {
   Link
 } from '@material-ui/core'
 
-import { useTranslation } from 'react-i18next'
-
+/**
+ * Signup form for worker, agency and business.
+ * @exports components/LandingPage/SignUpForm
+ * @param {Object} props
+ * @param {boolean} props.loggingIn - User currently signing up
+ * @param {function} props.handleSubmit - Function for sending user credentials
+ */
 const SignUpForm = ({ loggingIn, handleSubmit }) => {
   const [open, setOpen] = useState(false)
   const { t } = useTranslation()

@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import { Link as RouterLink, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
+
 import { login, signup } from '../../_actions/userActions'
 
 import SignUpForm from './SignUpForm'
@@ -10,13 +12,17 @@ import './landingPage.css'
 
 import { Box, Button, Divider, Grid } from '@material-ui/core'
 
-import { useTranslation } from 'react-i18next'
-
+/**
+ * The main landing page component.
+ * Container for LogInForm and SignUpForm.
+ * @exports components/LandingPage/LandingPage
+ */
 const LandingPage = () => {
   const [logInForm, setLogInForm] = useState(false)
   const location = useLocation()
   const dispatch = useDispatch()
   const loggingIn = useSelector(state => state.user.loading)
+  const { t } = useTranslation()
 
   const signupSubmit = ({ role, ...user }) => {
     dispatch(signup(user, role))
@@ -26,8 +32,6 @@ const LandingPage = () => {
     const { from } = location.state || { from: { pathname: '/home' } }
     dispatch(login(credentials, role, from))
   }
-
-  const { t } = useTranslation()
 
   return (
     <Grid

@@ -17,7 +17,12 @@ import {
   Container
 } from '@material-ui/core'
 
-const Profile = () => {
+/**
+ * The main profile page component.
+ * Container for WorkerProfile, CompanyProfile and PasswordChange components.
+ * @exports components/ProfilePage/ProfilePage
+ */
+const ProfilePage = () => {
   const [display, setDisplay] = useState(false)
   const { data, ...user } = useSelector(state => state.user)
   const dispatch = useDispatch()
@@ -77,4 +82,4 @@ const Profile = () => {
   )
 }
 
-export default Profile
+export default ProfilePage

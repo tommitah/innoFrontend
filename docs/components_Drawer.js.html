@@ -33,6 +33,7 @@ import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 import { logout } from '../_actions/userActions'
+import Role from '../_utils/role'
 
 import {
   Divider,
@@ -44,7 +45,14 @@ import {
   ListItemText,
   makeStyles,
 } from '@material-ui/core'
-import { ChevronLeft, Home, ExitToApp, AccountCircle } from '@material-ui/icons'
+import {
+  ChevronLeft,
+  Home,
+  ExitToApp,
+  AccountCircle,
+  PeopleAlt,
+  Contacts
+} from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -72,11 +80,12 @@ const useStyles = makeStyles((theme) => ({
  * @param {function} props.handleDrawer - [Function]{@link module:App~handleDrawer}
  * for opening and closing this component (drawer)
  * @param {boolean} [props.loggedIn] - If true user is logged into app
+ * @param {string} [props.role] - User's current role.
  * @example
  * const [open, setOpen] = useState(false)
- * &lt;Drawer open={ open } handleDrawer={ () => setOpen(prevOpen => !prevOpen)) } loggedIn={...} />
+ * &lt;Drawer open={ open } handleDrawer={ () => setOpen(prevOpen => !prevOpen)) } loggedIn={...} role={...} />
  */
-const Drawer = ({ open, handleDrawer, loggedIn }) => {
+const Drawer = ({ open, handleDrawer, loggedIn, role }) => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const { t } = useTranslation()
@@ -108,10 +117,18 @@ const Drawer = ({ open, handleDrawer, loggedIn }) => {
                   &lt;ListItemText primary="Profile" />
                 &lt;/ListItem>
               }
-              &lt;ListItem button component={Link} to="/workers">
-                &lt;ListItemIcon>&lt;AccountCircle />&lt;/ListItemIcon>
-                &lt;ListItemText primary="Workers" />
-              &lt;/ListItem>
+              {role === Role.Agency &amp;&amp;
+                &lt;ListItem button component={Link} to="/contracts">
+                  &lt;ListItemIcon>&lt;Contacts />&lt;/ListItemIcon>
+                  &lt;ListItemText primary="Contracts" />
+                &lt;/ListItem>
+              }
+              {(role === Role.Agency || role === Role.Business) &amp;&amp;
+                &lt;ListItem button component={Link} to="/workers">
+                  &lt;ListItemIcon>&lt;PeopleAlt />&lt;/ListItemIcon>
+                  &lt;ListItemText primary="Workers" />
+                &lt;/ListItem>
+              }
             &lt;/List>
           &lt;/div>
         &lt;/div>
@@ -136,7 +153,8 @@ const Drawer = ({ open, handleDrawer, loggedIn }) => {
 Drawer.propTypes = {
   open: PropTypes.bool.isRequired,
   handleDrawer: PropTypes.func.isRequired,
-  loggedIn: PropTypes.bool
+  loggedIn: PropTypes.bool,
+  role: PropTypes.string
 }
 
 export default Drawer</code></pre>
@@ -149,13 +167,13 @@ export default Drawer</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-App.html">App</a></li><li><a href="module-components_AppBar.html">components/AppBar</a></li><li><a href="module-components_Drawer.html">components/Drawer</a></li><li><a href="module-components_FormikRadioField.html">components/FormikRadioField</a></li><li><a href="module-components_FormikSelectField.html">components/FormikSelectField</a></li><li><a href="module-components_FormikTextField.html">components/FormikTextField</a></li><li><a href="module-components_PrivateRoute.html">components/PrivateRoute</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-App.html">App</a></li><li><a href="module-components_AppBar.html">components/AppBar</a></li><li><a href="module-components_Drawer.html">components/Drawer</a></li><li><a href="module-components_FormikRadioField.html">components/FormikRadioField</a></li><li><a href="module-components_FormikSelectField.html">components/FormikSelectField</a></li><li><a href="module-components_FormikTextField.html">components/FormikTextField</a></li><li><a href="module-components_LandingPage_LandingPage.html">components/LandingPage/LandingPage</a></li><li><a href="module-components_LandingPage_LogInForm.html">components/LandingPage/LogInForm</a></li><li><a href="module-components_LandingPage_SignUpForm.html">components/LandingPage/SignUpForm</a></li><li><a href="module-components_LandingPage_SignUpModal.html">components/LandingPage/SignUpModal</a></li><li><a href="module-components_PageLoading.html">components/PageLoading</a></li><li><a href="module-components_PrivateRoute.html">components/PrivateRoute</a></li><li><a href="module-components_ProfilePage_CompanyProfile.html">components/ProfilePage/CompanyProfile</a></li><li><a href="module-components_ProfilePage_PasswordChange.html">components/ProfilePage/PasswordChange</a></li><li><a href="module-components_ProfilePage_ProfilePage.html">components/ProfilePage/ProfilePage</a></li><li><a href="module-components_ProfilePage_WorkerProfile.html">components/ProfilePage/WorkerProfile</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ContractsPage">ContractsPage</a></li><li><a href="global.html#WorkersPage">WorkersPage</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Fri Nov 20 2020 15:45:20 GMT+0200 (GMT+02:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Thu Dec 03 2020 13:15:27 GMT+0200 (GMT+02:00)
 </footer>
 
 <script> prettyPrint(); </script>

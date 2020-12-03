@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/AppBar.js</title>
+    <title>JSDoc: Module: components/ProfilePage/ProfilePage</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,96 +17,133 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/AppBar.js</h1>
+    <h1 class="page-title">Module: components/ProfilePage/ProfilePage</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react'
-import PropTypes from 'prop-types'
-import i18n, { getCurrentLocale } from '../i18nextInit'
+        
+            
+        
+    
+</header>
 
-import {
-  AppBar as MUIAppBar,
-  IconButton,
-  Toolbar,
-  makeStyles,
-  Button,
-  Menu,
-  MenuItem
-} from '@material-ui/core'
-import {
-  Menu as MenuIcon,
-  Translate as TranslateIcon,
-  ExpandMore as ExpandMoreIcon
-} from '@material-ui/icons'
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>The main profile page component.
+Container for WorkerProfile, CompanyProfile and PasswordChange components.</p></div>
+        
 
-const useStyles = makeStyles(() => ({
-  grow: {
-    flexGrow: 1,
-  }
-}))
+        
+            
 
-/**
- * AppBar component, works as header for the whole page.
- * @exports components/AppBar
- * @param {Object} props
- * @param {function} props.handleDrawer - [Function]{@link module:App~handleDrawer}
- * for opening and closing a [drawer component]{@link module:components/Drawer}
- * @example
- * &lt;AppBar handleDrawer={...} />
- */
-const AppBar = ({ handleDrawer }) => {
-  const classes = useStyles()
-  const [anchorEl, setAnchorEl] = React.useState(null)
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng)
-    setAnchorEl(null)
-  }
 
-  return (
-    &lt;MUIAppBar position="fixed">
-      &lt;Toolbar>
-        &lt;IconButton
-          color="inherit"
-          aria-label="open menu"
-          edge="start"
-          onClick={handleDrawer}>
-          &lt;MenuIcon />
-        &lt;/IconButton>
-        &lt;div className={classes.grow} />
-        &lt;Button
-          color="inherit"
-          startIcon={&lt;TranslateIcon />}
-          endIcon={&lt;ExpandMoreIcon />}
-          onClick={(event) => setAnchorEl(event.currentTarget)}>
-          {getCurrentLocale()}
-        &lt;/Button>
-        &lt;Menu
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={() => setAnchorEl(null)}>
-          &lt;MenuItem onClick={() => changeLanguage('en')}>English&lt;/MenuItem>
-          &lt;MenuItem onClick={() => changeLanguage('fi')}>Suomi&lt;/MenuItem>
-        &lt;/Menu>
-      &lt;/Toolbar>
-    &lt;/MUIAppBar>
-  )
-}
 
-AppBar.propTypes = {
-  handleDrawer: PropTypes.func.isRequired
-}
 
-export default AppBar</code></pre>
-        </article>
-    </section>
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_ProfilePage_index.js.html">components/ProfilePage/index.js</a>, <a href="components_ProfilePage_index.js.html#line25">line 25</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

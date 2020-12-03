@@ -1,16 +1,20 @@
 import React from 'react'
 import { Formik, Form } from 'formik'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 
 import { FormikTextField, FormikRadioField } from '../FormField'
 
 import { Card, CardContent, Typography, Button, Box, CircularProgress } from '@material-ui/core'
 
-//HK
-import { useTranslation } from 'react-i18next'
-
+/**
+ * Login form for worker, agency and business.
+ * @exports components/LandingPage/LogInForm
+ * @param {Object} props
+ * @param {boolean} props.loggingIn - User currently loggin in
+ * @param {function} props.handleSubmit - Function for sending user credentials
+ */
 const LogInForm = ({ loggingIn, handleSubmit }) => {
-
   const { t } = useTranslation()
 
   const roleOptions = [

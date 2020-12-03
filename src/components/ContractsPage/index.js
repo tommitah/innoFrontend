@@ -18,6 +18,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+/**
+ * TODO:
+ * - Displays all the current businesscontracts, including pending ones (agency view, business view, worker view).
+ * - Creates businesscontracts with businesses and workers (agency view).
+ * - Accepts businesscontracts (worker view and business view).
+ *
+ * After agency has sent businesscontract and business/worker has accepted it,
+ * agency can create workcontracts between worker and business in workerpage.
+ * Only workers/businesses that have accepted businesscontract with agency will be shown
+ * in workerpage
+ */
 const ContractsPage = () => {
   const { data, ...user } = useSelector(state => state.user)
   const dispatch = useDispatch()

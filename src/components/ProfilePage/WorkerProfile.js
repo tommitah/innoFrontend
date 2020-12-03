@@ -17,6 +17,13 @@ import {
 } from '@material-ui/core'
 import { Delete as DeleteIcon, Add as AddIcon } from '@material-ui/icons'
 
+/**
+ * Component for displaying and updating worker profile information.
+ * @exports components/ProfilePage/WorkerProfile
+ * @param {Object} props
+ * @param {Object} props.profile - Worker profile data that is used for initialization
+ * @param {function} props.handleSubmit - Function for updating worker's profile information
+ */
 const WorkerProfile = ({ profile, handleSubmit }) => {
   const [edit, setEdit] = useState(true)
 

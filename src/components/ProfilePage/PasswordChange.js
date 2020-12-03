@@ -6,6 +6,14 @@ import { FormikTextField } from '../FormField'
 
 import { Card, CardContent, Typography, Button, Box } from '@material-ui/core'
 
+
+/**
+ * Component for changing worker/agency/business password.
+ * @exports components/ProfilePage/PasswordChange
+ * @param {Object} props
+ * @param {boolean} props.hide - Determines if form for changing password is displayed
+ * @param {function} props.handleSubmit - Function for updating password
+ */
 const PasswordChange = ({ handleSubmit, hide }) => {
   return (
     <Card variant="outlined">

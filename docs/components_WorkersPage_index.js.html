@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/AppBar.js</title>
+    <title>JSDoc: Source: components/WorkersPage/index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/AppBar.js</h1>
+    <h1 class="page-title">Source: components/WorkersPage/index.js</h1>
 
     
 
@@ -26,85 +26,91 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react'
-import PropTypes from 'prop-types'
-import i18n, { getCurrentLocale } from '../i18nextInit'
+            <pre class="prettyprint source linenums"><code>import React, { useState } from 'react'
+import contractsService from '../../_services/contractsService'
+
+import WorkerSearch from './WorkerSearch'
+import SearchTable from './SearchTable'
+import WorkerModal from './WorkerModal'
 
 import {
-  AppBar as MUIAppBar,
-  IconButton,
-  Toolbar,
-  makeStyles,
-  Button,
-  Menu,
-  MenuItem
+  Card,
+  Container,
+  Divider,
+  CardContent,
+  Typography,
+  makeStyles
 } from '@material-ui/core'
-import {
-  Menu as MenuIcon,
-  Translate as TranslateIcon,
-  ExpandMore as ExpandMoreIcon
-} from '@material-ui/icons'
 
-const useStyles = makeStyles(() => ({
-  grow: {
-    flexGrow: 1,
-  }
+const useStyles = makeStyles((theme) => ({
+  card: {
+    margin: theme.spacing(2, 0)
+  },
 }))
 
 /**
- * AppBar component, works as header for the whole page.
- * @exports components/AppBar
- * @param {Object} props
- * @param {function} props.handleDrawer - [Function]{@link module:App~handleDrawer}
- * for opening and closing a [drawer component]{@link module:components/Drawer}
- * @example
- * &lt;AppBar handleDrawer={...} />
+ * TODO:
+ * - Displays all the current workers that agency has a businesscontract with (agency view).
+ * - Displays all the current workcontracts that agency has made (agency view).
+ * - Displays all the current workcontracts where business/worker is involved (worker view and business view).
+ * - Creates workcontract between worker and business (agency view)
  */
-const AppBar = ({ handleDrawer }) => {
+const WorkersPage = () => {
+  const [workers, setWorkers] = useState([])
+  const [workerData, setWorkerData] = useState(null)
+  const [displayModal, setDisplayModal] = useState(false)
   const classes = useStyles()
-  const [anchorEl, setAnchorEl] = React.useState(null)
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng)
-    setAnchorEl(null)
+  const fetchWorkers = async (input) => {
+    // siirto reduxiin
+    const result = await contractsService.searchUsers(input, 'worker')
+    setWorkers(result.data)
+  }
+
+  const openModal = (worker) => {
+    setWorkerData(worker)
+    setDisplayModal(true)
   }
 
   return (
-    &lt;MUIAppBar position="fixed">
-      &lt;Toolbar>
-        &lt;IconButton
-          color="inherit"
-          aria-label="open menu"
-          edge="start"
-          onClick={handleDrawer}>
-          &lt;MenuIcon />
-        &lt;/IconButton>
-        &lt;div className={classes.grow} />
-        &lt;Button
-          color="inherit"
-          startIcon={&lt;TranslateIcon />}
-          endIcon={&lt;ExpandMoreIcon />}
-          onClick={(event) => setAnchorEl(event.currentTarget)}>
-          {getCurrentLocale()}
-        &lt;/Button>
-        &lt;Menu
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={() => setAnchorEl(null)}>
-          &lt;MenuItem onClick={() => changeLanguage('en')}>English&lt;/MenuItem>
-          &lt;MenuItem onClick={() => changeLanguage('fi')}>Suomi&lt;/MenuItem>
-        &lt;/Menu>
-      &lt;/Toolbar>
-    &lt;/MUIAppBar>
+    &lt;Container maxWidth="lg">
+      &lt;Typography style={{ paddingTop: '1rem' }} align="center" variant="h4">
+        Workers
+      &lt;/Typography>
+      &lt;Card className={classes.card} variant="outlined">
+        &lt;CardContent>
+          &lt;Typography gutterBottom variant="h5" align="center">
+            add workers to businesses
+          &lt;/Typography>
+          &lt;WorkerSearch fetchWorkers={fetchWorkers} />
+          &lt;Divider />
+          {workers.length ?
+            &lt;SearchTable
+              workers={workers}
+              addWorker={openModal}  /> :
+            &lt;Typography style={{ padding: '1rem' }} variant="h6" align="center">
+              nothing here
+            &lt;/Typography>
+          }
+        &lt;/CardContent>
+      &lt;/Card>
+      &lt;WorkerModal
+        displayModal={displayModal}
+        closeModal={() => setDisplayModal(false)}
+        workerData={workerData}
+      />
+      &lt;Card className={classes.card} variant="outlined">
+        &lt;CardContent>
+          &lt;Typography gutterBottom variant="h5" align="center">
+            current workers
+          &lt;/Typography>
+        &lt;/CardContent>
+      &lt;/Card>
+    &lt;/Container>
   )
 }
 
-AppBar.propTypes = {
-  handleDrawer: PropTypes.func.isRequired
-}
-
-export default AppBar</code></pre>
+export default WorkersPage</code></pre>
         </article>
     </section>
 

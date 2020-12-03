@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/PrivateRoute.js</title>
+    <title>JSDoc: Source: components/LandingPage/SignUpModal.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/PrivateRoute.js</h1>
+    <h1 class="page-title">Source: components/LandingPage/SignUpModal.js</h1>
 
     
 
@@ -27,74 +27,58 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  Box,
+  Typography,
+  IconButton
+} from '@material-ui/core'
+import { Close as CloseIcon } from '@material-ui/icons'
+
 /**
- * Private route component. Renders the child components if the user is logged in
- * (and in an authorized role for the route). If the user isn't logged in they are
- * redirected to the landing page (login/signup). If the user is logged in but doesn't have
- * the correct role, they are redirected to the home page. Used inside Switch component that is imported from 'react-router-dom'.
- * @exports components/PrivateRoute
+ * Modal for displaying terms of service and other same kind of stuff
+ * @exports components/LandingPage/SignUpModal
  * @param {Object} props
- * @param {(boolean | undefined)} props.loggedIn User's loggedIn status. Can be undefined if user isn't loggedIn.
- * @param {string} props.path Route's path
- * @param {node} props.children Components that the route renders.
- * @param {string} [props.role] Required if private route is role specific. User's current role.
- * @param {("worker"|"business"|"agency")} [props.roles] Required if private route is role specific.
- * Roles that are authorized.
- * @example
- * &lt;Switch>
- *  &lt;PrivateRoute path="/profile" loggedIn={ loggedIn }>
- *    &lt;ProfilePage />
- *  &lt;/PrivateRoute>
- *  &lt;PrivateRoute
- *    path="/workers"
- *    role={ data ? data.role : undefined }
- *    roles={ [Role.Business, Role.Agency] }
- *    loggedIn={ loggedIn }>
- *    &lt;WorkersPage />
- *  &lt;/PrivateRoute>
- * &lt;/Switch>
+ * @param {boolean} props.open - Determines if modal is displayed
+ * @param {function} props.handleClose - Closes modal
  */
-const PrivateRoute = ({ loggedIn, role, roles, children, ...rest }) => {
+const SignUpModal = ({ open, handleClose }) => {
   return (
-    &lt;Route
-      {...rest}
-      render={({ location }) => {
-        if (!loggedIn) {
-          return &lt;Redirect
-            to={{
-              pathname: '/',
-              state: { from: location }
-            }}
-          />
-        }
-
-        if (role &amp;&amp; roles.indexOf(role) === -1) {
-          return &lt;Redirect
-            to={{
-              pathname: '/home',
-              state: { from: location }
-            }}
-          />
-        }
-
-        return children
-      }}
-    />
+    &lt;Dialog open={open} onClose={handleClose}>
+      &lt;DialogTitle>
+        &lt;Box display="flex" justifyContent="space-between" alignItems="center">
+          &lt;Typography variant="h6">
+            Sign Up modal
+          &lt;/Typography>
+          &lt;IconButton onClick={handleClose}>
+            &lt;CloseIcon />
+          &lt;/IconButton>
+        &lt;/Box>
+      &lt;/DialogTitle>
+      &lt;DialogContent dividers>
+        &lt;Typography gutterBottom>
+          Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
+          in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+        &lt;/Typography>
+        &lt;Typography gutterBottom>
+          Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
+          lacus vel augue laoreet rutrum faucibus dolor auctor.
+        &lt;/Typography>
+      &lt;/DialogContent>
+    &lt;/Dialog>
   )
 }
 
-PrivateRoute.propTypes = {
-  loggedIn: PropTypes.bool,
-  path: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  role: PropTypes.string,
-  roles: PropTypes.arrayOf(PropTypes.oneOf(['worker', 'business', 'agency']))
+SignUpModal.propTypes = {
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired
 }
 
-export default PrivateRoute</code></pre>
+export default SignUpModal</code></pre>
         </article>
     </section>
 

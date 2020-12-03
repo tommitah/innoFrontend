@@ -20,6 +20,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+/**
+ * TODO:
+ * - Displays all the current workers that agency has a businesscontract with (agency view).
+ * - Displays all the current workcontracts that agency has made (agency view).
+ * - Displays all the current workcontracts where business/worker is involved (worker view and business view).
+ * - Creates workcontract between worker and business (agency view)
+ */
 const WorkersPage = () => {
   const [workers, setWorkers] = useState([])
   const [workerData, setWorkerData] = useState(null)

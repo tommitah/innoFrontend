@@ -33,6 +33,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import LandingPage from './components/LandingPage'
 import HomePage from './components/HomePage'
 import ProfilePage from './components/ProfilePage'
+import WorkersPage from './components/WorkersPage'
+import ContractsPage from './components/ContractsPage'
 import PrivateRoute from './components/PrivateRoute'
 import Drawer from './components/Drawer'
 import AppBar from './components/AppBar'
@@ -43,8 +45,7 @@ import Role from './_utils/role'
 import {
   CssBaseline,
   Snackbar,
-  Toolbar,
-  Grid
+  Toolbar
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 
@@ -81,38 +82,38 @@ const App = () => {
       &lt;CssBaseline />
       &lt;AppBar handleDrawer={handleDrawer} />
       &lt;Toolbar />
-      &lt;Drawer open={open} handleDrawer={handleDrawer} loggedIn={loggedIn} />
+      &lt;Drawer open={open} handleDrawer={handleDrawer} loggedIn={loggedIn} role={data.role} />
       &lt;Snackbar open={alert.open} onClose={handleSnackbarClose}>
         &lt;Alert onClose={handleSnackbarClose} severity={alert.severity} variant="filled">
           {alert.message}
         &lt;/Alert>
       &lt;/Snackbar>
-      &lt;Grid
-        container
-        justify="center"
-        spacing={0}
-        alignItems="center"
-        style={{ minHeight: '100vh' }}>
-        &lt;Switch>
-          &lt;Route exact path="/">
-            {loggedIn ? &lt;Redirect to="/home" /> : &lt;LandingPage />}
-          &lt;/Route>
-          &lt;Route path="/home">
-            &lt;HomePage />
-          &lt;/Route>
-          &lt;PrivateRoute path="/profile" loggedIn={loggedIn}>
-            &lt;ProfilePage />
-          &lt;/PrivateRoute>
-          &lt;PrivateRoute
-            path="/workers"
-            role={data ? data.role : undefined}
-            roles={[Role.Business, Role.Agency]}
-            loggedIn={loggedIn}>
-            &lt;p>workers&lt;/p>
-          &lt;/PrivateRoute>
-          &lt;Redirect from="*" to="/home" />
-        &lt;/Switch>
-      &lt;/Grid>
+      &lt;Switch>
+        &lt;Route exact path="/">
+          {loggedIn ? &lt;Redirect to="/home" /> : &lt;LandingPage />}
+        &lt;/Route>
+        &lt;Route path="/home">
+          &lt;HomePage />
+        &lt;/Route>
+        &lt;PrivateRoute path="/profile" loggedIn={loggedIn}>
+          &lt;ProfilePage />
+        &lt;/PrivateRoute>
+        &lt;PrivateRoute
+          path="/contracts"
+          role={data.role}
+          roles={[Role.Agency]}
+          loggedIn={loggedIn}>
+          &lt;ContractsPage />
+        &lt;/PrivateRoute>
+        &lt;PrivateRoute
+          path="/workers"
+          role={data.role}
+          roles={[Role.Business, Role.Agency]}
+          loggedIn={loggedIn}>
+          &lt;WorkersPage />
+        &lt;/PrivateRoute>
+        &lt;Redirect from="*" to="/home" />
+      &lt;/Switch>
     &lt;/>
   )
 }
@@ -136,13 +137,13 @@ export default App</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-App.html">App</a></li><li><a href="module-components_AppBar.html">components/AppBar</a></li><li><a href="module-components_Drawer.html">components/Drawer</a></li><li><a href="module-components_FormikRadioField.html">components/FormikRadioField</a></li><li><a href="module-components_FormikSelectField.html">components/FormikSelectField</a></li><li><a href="module-components_FormikTextField.html">components/FormikTextField</a></li><li><a href="module-components_PrivateRoute.html">components/PrivateRoute</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-App.html">App</a></li><li><a href="module-components_AppBar.html">components/AppBar</a></li><li><a href="module-components_Drawer.html">components/Drawer</a></li><li><a href="module-components_FormikRadioField.html">components/FormikRadioField</a></li><li><a href="module-components_FormikSelectField.html">components/FormikSelectField</a></li><li><a href="module-components_FormikTextField.html">components/FormikTextField</a></li><li><a href="module-components_LandingPage_LandingPage.html">components/LandingPage/LandingPage</a></li><li><a href="module-components_LandingPage_LogInForm.html">components/LandingPage/LogInForm</a></li><li><a href="module-components_LandingPage_SignUpForm.html">components/LandingPage/SignUpForm</a></li><li><a href="module-components_LandingPage_SignUpModal.html">components/LandingPage/SignUpModal</a></li><li><a href="module-components_PageLoading.html">components/PageLoading</a></li><li><a href="module-components_PrivateRoute.html">components/PrivateRoute</a></li><li><a href="module-components_ProfilePage_CompanyProfile.html">components/ProfilePage/CompanyProfile</a></li><li><a href="module-components_ProfilePage_PasswordChange.html">components/ProfilePage/PasswordChange</a></li><li><a href="module-components_ProfilePage_ProfilePage.html">components/ProfilePage/ProfilePage</a></li><li><a href="module-components_ProfilePage_WorkerProfile.html">components/ProfilePage/WorkerProfile</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ContractsPage">ContractsPage</a></li><li><a href="global.html#WorkersPage">WorkersPage</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Fri Nov 20 2020 15:45:20 GMT+0200 (GMT+02:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Thu Dec 03 2020 13:15:27 GMT+0200 (GMT+02:00)
 </footer>
 
 <script> prettyPrint(); </script>

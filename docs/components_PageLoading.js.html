@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/PrivateRoute.js</title>
+    <title>JSDoc: Source: components/PageLoading.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/PrivateRoute.js</h1>
+    <h1 class="page-title">Source: components/PageLoading.js</h1>
 
     
 
@@ -27,74 +27,35 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
-import PropTypes from 'prop-types'
+
+import { Grid, CircularProgress } from '@material-ui/core'
 
 /**
- * Private route component. Renders the child components if the user is logged in
- * (and in an authorized role for the route). If the user isn't logged in they are
- * redirected to the landing page (login/signup). If the user is logged in but doesn't have
- * the correct role, they are redirected to the home page. Used inside Switch component that is imported from 'react-router-dom'.
- * @exports components/PrivateRoute
- * @param {Object} props
- * @param {(boolean | undefined)} props.loggedIn User's loggedIn status. Can be undefined if user isn't loggedIn.
- * @param {string} props.path Route's path
- * @param {node} props.children Components that the route renders.
- * @param {string} [props.role] Required if private route is role specific. User's current role.
- * @param {("worker"|"business"|"agency")} [props.roles] Required if private route is role specific.
- * Roles that are authorized.
+ * Displays material-ui CircularProgress component in the center of the screen.
+ * Used when page is loading content and there is nothing to show.
+ * @exports components/PageLoading
  * @example
- * &lt;Switch>
- *  &lt;PrivateRoute path="/profile" loggedIn={ loggedIn }>
- *    &lt;ProfilePage />
- *  &lt;/PrivateRoute>
- *  &lt;PrivateRoute
- *    path="/workers"
- *    role={ data ? data.role : undefined }
- *    roles={ [Role.Business, Role.Agency] }
- *    loggedIn={ loggedIn }>
- *    &lt;WorkersPage />
- *  &lt;/PrivateRoute>
- * &lt;/Switch>
+ * if (user.loading) {
+ *  return (
+ *    &lt;PageLoading />
+ *  )
+ * }
  */
-const PrivateRoute = ({ loggedIn, role, roles, children, ...rest }) => {
+
+const PageLoading = () => {
   return (
-    &lt;Route
-      {...rest}
-      render={({ location }) => {
-        if (!loggedIn) {
-          return &lt;Redirect
-            to={{
-              pathname: '/',
-              state: { from: location }
-            }}
-          />
-        }
-
-        if (role &amp;&amp; roles.indexOf(role) === -1) {
-          return &lt;Redirect
-            to={{
-              pathname: '/home',
-              state: { from: location }
-            }}
-          />
-        }
-
-        return children
-      }}
-    />
+    &lt;Grid
+      container
+      justify="center"
+      spacing={0}
+      alignItems="center"
+      style={{ minHeight: '100vh' }}>
+      &lt;CircularProgress />
+    &lt;/Grid>
   )
 }
 
-PrivateRoute.propTypes = {
-  loggedIn: PropTypes.bool,
-  path: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  role: PropTypes.string,
-  roles: PropTypes.arrayOf(PropTypes.oneOf(['worker', 'business', 'agency']))
-}
-
-export default PrivateRoute</code></pre>
+export default PageLoading</code></pre>
         </article>
     </section>
 

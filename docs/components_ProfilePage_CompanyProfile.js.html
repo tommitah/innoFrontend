@@ -1,4 +1,32 @@
-import React, { useState } from 'react'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/ProfilePage/CompanyProfile.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/ProfilePage/CompanyProfile.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState } from 'react'
 import { Formik, Form } from 'formik'
 import PropTypes from 'prop-types'
 import { FormikTextField } from '../FormField'
@@ -15,26 +43,26 @@ const CompanyProfile = ({ profile, handleSubmit }) => {
   const [edit, setEdit] = useState(true)
 
   return (
-    <Card variant="outlined">
-      <CardContent>
-        <Box
+    &lt;Card variant="outlined">
+      &lt;CardContent>
+        &lt;Box
           paddingBottom={2}
           display="flex"
           flexDirection="row"
           justifyContent="space-between">
-          <Typography align="center" variant="h4">
+          &lt;Typography align="center" variant="h4">
             Profile
-          </Typography>
-          <FormControlLabel
-            control={<Switch
+          &lt;/Typography>
+          &lt;FormControlLabel
+            control={&lt;Switch
               size="small"
               checked={!edit}
               onChange={() => setEdit(prevEdit => !prevEdit)}
             />}
             label="edit information"
           />
-        </Box>
-        <Formik
+        &lt;/Box>
+        &lt;Formik
           initialValues={{
             name: profile.name,
             securityOfficer: profile.securityOfficer || '',
@@ -51,13 +79,13 @@ const CompanyProfile = ({ profile, handleSubmit }) => {
 
             if (!values.name) {
               errors.name = requiredError
-            } else if (values.name.length < 3) {
+            } else if (values.name.length &lt; 3) {
               errors.name = 'Invalid name'
             }
-            if (values.phonenumber && !phoneRegExp.test(values.phonenumber)) {
+            if (values.phonenumber &amp;&amp; !phoneRegExp.test(values.phonenumber)) {
               errors.phonenumber = 'Invalid phone number'
             }
-            if (values.postnumber && !postnumRegExp.test(values.postnumber)) {
+            if (values.postnumber &amp;&amp; !postnumRegExp.test(values.postnumber)) {
               errors.postnumber = 'Invalid postnumber'
             }
             return errors
@@ -67,65 +95,65 @@ const CompanyProfile = ({ profile, handleSubmit }) => {
             handleSubmit(values)
           }}>
           {({ isValid, dirty }) => (
-            <Form>
-              <Box
+            &lt;Form>
+              &lt;Box
                 display="flex"
                 flexDirection="column">
-                <FormikTextField
+                &lt;FormikTextField
                   label="Name"
                   name="name"
                   type="text"
                   placeholder="Company Name"
                   disabled={edit}
                 />
-                <FormikTextField
+                &lt;FormikTextField
                   label="Security Officer"
                   name="securityOfficer"
                   type="text"
                   placeholder="Jarmo Testaaja jarmo.testaaja@company.com"
                   disabled={edit}
                 />
-                <FormikTextField
+                &lt;FormikTextField
                   label="Phone Number"
                   name="phonenumber"
                   type="text"
                   placeholder="+35850 5050505"
                   disabled={edit}
                 />
-                <FormikTextField
+                &lt;FormikTextField
                   label="Address"
                   name="address"
                   type="text"
                   placeholder="Kivakuja 5K 105"
                   disabled={edit}
                 />
-                <FormikTextField
+                &lt;FormikTextField
                   label="Post number / Zip code"
                   name="postnumber"
                   type="text"
                   placeholder="00920"
                   disabled={edit}
                 />
-                <FormikTextField
+                &lt;FormikTextField
                   label="City"
                   name="city"
                   type="text"
                   placeholder="Helsinki"
                   disabled={edit}
                 />
-                <Button
+                &lt;Button
                   type="submit"
                   disabled={!dirty || !isValid || edit}
                   variant="contained"
                   color="primary">
                   submit
-                </Button>
-              </Box>
-            </Form>
+                &lt;/Button>
+              &lt;/Box>
+            &lt;/Form>
           )}
-        </Formik>
-      </CardContent>
-    </Card>
+        &lt;/Formik>
+      &lt;/CardContent>
+    &lt;/Card>
   )
 }
 
@@ -141,4 +169,26 @@ CompanyProfile.propTypes = {
   handleSubmit: PropTypes.func.isRequired
 }
 
-export default CompanyProfile
+export default CompanyProfile</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-App.html">App</a></li><li><a href="module-components_AppBar.html">components/AppBar</a></li><li><a href="module-components_Drawer.html">components/Drawer</a></li><li><a href="module-components_FormikRadioField.html">components/FormikRadioField</a></li><li><a href="module-components_FormikSelectField.html">components/FormikSelectField</a></li><li><a href="module-components_FormikTextField.html">components/FormikTextField</a></li><li><a href="module-components_LandingPage_LandingPage.html">components/LandingPage/LandingPage</a></li><li><a href="module-components_LandingPage_LogInForm.html">components/LandingPage/LogInForm</a></li><li><a href="module-components_LandingPage_SignUpForm.html">components/LandingPage/SignUpForm</a></li><li><a href="module-components_LandingPage_SignUpModal.html">components/LandingPage/SignUpModal</a></li><li><a href="module-components_PageLoading.html">components/PageLoading</a></li><li><a href="module-components_PrivateRoute.html">components/PrivateRoute</a></li><li><a href="module-components_ProfilePage_CompanyProfile.html">components/ProfilePage/CompanyProfile</a></li><li><a href="module-components_ProfilePage_PasswordChange.html">components/ProfilePage/PasswordChange</a></li><li><a href="module-components_ProfilePage_ProfilePage.html">components/ProfilePage/ProfilePage</a></li><li><a href="module-components_ProfilePage_WorkerProfile.html">components/ProfilePage/WorkerProfile</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ContractsPage">ContractsPage</a></li><li><a href="global.html#WorkersPage">WorkersPage</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Thu Dec 03 2020 13:15:27 GMT+0200 (GMT+02:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
