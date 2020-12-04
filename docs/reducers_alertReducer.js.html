@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: components/LandingPage/LandingPage</title>
+    <title>JSDoc: Source: reducers/alertReducer.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,133 +17,47 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: components/LandingPage/LandingPage</h1>
+    <h1 class="page-title">Source: reducers/alertReducer.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>The main landing page component.
-Container for LogInForm and SignUpForm.</p></div>
-        
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_LandingPage_index.js.html">components/LandingPage/index.js</a>, <a href="components_LandingPage_index.js.html#line20">line 20</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Redux alert reducer
+ * @module
+ */
+import alertConstants from '../constants/alertConstants'
+
+/**
+ * alert reducer that controls alert state
+ * @function
+ * @param {Object} state - current state
+ * @param {Object} action - dispatched action
+ */
+const alertReducer = (state = {}, action) => {
+  switch (action.type) {
+    case alertConstants.SET:
+      return {
+        severity: action.severity,
+        message: action.message,
+        open: true
+      }
+    case alertConstants.CLEAR:
+      return {
+        ...state, open: false
+      }
+    default:
+      return state
+  }
+}
+
+export default alertReducer</code></pre>
+        </article>
+    </section>
 
 
 

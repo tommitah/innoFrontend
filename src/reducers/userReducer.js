@@ -1,9 +1,19 @@
+/**
+ * Redux user reducer
+ * @module
+ */
 import { loadUser } from '../utils/storage'
 import userConstants from '../constants/userConstants'
 
 const userData = loadUser()
 const initialState = userData ? { loggedIn: true, data: userData } : { loggedIn: false, data: {} }
 
+/**
+ * user reducer that controls user state
+ * @function
+ * @param {Object} state - current state
+ * @param {Object} action - dispatched action
+ */
 const userReducer = (state = initialState, action) => {
   console.log('userReducer', action)
   switch (action.type) {

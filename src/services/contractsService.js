@@ -1,14 +1,28 @@
+/**
+ * Contract requests to backend
+ * @module
+ */
 import axios from 'axios'
 import { loadUser } from '../utils/storage'
 
 const baseUrl = 'http://localhost:3001/api'
 
+/**
+ * helper function for setting up request header
+ * @function
+ */
 const authHeader = () => {
   return {
     headers: { 'x-access-token': `${loadUser().token}` }
   }
 }
 
+/**
+ * Gets workers or businesses by name (LIKE behavior)
+ * @function
+ * @param {string} input - input that is searched
+ * @param {string} searchType - determines if workers or businesses are searched
+ */
 const searchUsers = async (input, searchType) => {
   try {
     switch (searchType) {

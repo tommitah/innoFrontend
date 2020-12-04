@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: components/LandingPage/LandingPage</title>
+    <title>JSDoc: Source: reducers/userReducer.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,133 +17,62 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: components/LandingPage/LandingPage</h1>
+    <h1 class="page-title">Source: reducers/userReducer.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>The main landing page component.
-Container for LogInForm and SignUpForm.</p></div>
-        
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_LandingPage_index.js.html">components/LandingPage/index.js</a>, <a href="components_LandingPage_index.js.html#line20">line 20</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Redux user reducer
+ * @module
+ */
+import { loadUser } from '../utils/storage'
+import userConstants from '../constants/userConstants'
+
+const userData = loadUser()
+const initialState = userData ? { loggedIn: true, data: userData } : { loggedIn: false, data: {} }
+
+/**
+ * user reducer that controls user state
+ * @function
+ * @param {Object} state - current state
+ * @param {Object} action - dispatched action
+ */
+const userReducer = (state = initialState, action) => {
+  console.log('userReducer', action)
+  switch (action.type) {
+    case userConstants.REQUEST:
+      return {
+        loading: true,
+        data: state.data,
+        loggedIn: !!state.loggedIn
+      }
+    case userConstants.LOGIN_SUCCESS:
+      return {
+        loggedIn: true,
+        data: action.data
+      }
+    case userConstants.PROFILE_SUCCESS:
+      return {
+        loggedIn: true,
+        data: state.data,
+        profile: action.profile
+      }
+    case userConstants.FAILURE:
+    case userConstants.LOGOUT:
+      return { loggedIn: false, data: {} }
+    default:
+      return state
+  }
+}
+
+export default userReducer</code></pre>
+        </article>
+    </section>
 
 
 

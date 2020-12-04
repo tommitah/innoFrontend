@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: components/LandingPage/LandingPage</title>
+    <title>JSDoc: Source: actions/alertActions.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,133 +17,66 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: components/LandingPage/LandingPage</h1>
+    <h1 class="page-title">Source: actions/alertActions.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>The main landing page component.
-Container for LogInForm and SignUpForm.</p></div>
-        
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_LandingPage_index.js.html">components/LandingPage/index.js</a>, <a href="components_LandingPage_index.js.html#line20">line 20</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Redux alert actions
+ * @module actions/alertActions
+ */
+import alertConstants from '../constants/alertConstants'
+
+let timeoutId
+
+/**
+ * Sets alert that is shown inside a {@link https://material-ui.com/components/snackbars/|MUI snackbar component}
+ * @function
+ * @param {string} message - text that alert displays (displayed in MUI snackbar)
+ * @param {string} [severity=info] - alert severity (error, warning, info, success)
+ * @param {number} [duration=5]  - amount of time the alert is shown in seconds
+ */
+export const setAlert = (message, severity = 'info', duration = 5) => {
+  return async dispatch => {
+    dispatch({
+      type: alertConstants.SET,
+      message,
+      severity
+    })
+
+    if (timeoutId) {
+      clearTimeout(timeoutId)
+    }
+
+    timeoutId = setTimeout(() => {
+      dispatch({
+        type: alertConstants.CLEAR
+      })
+    }, duration * 1000)
+  }
+}
+
+/**
+ * Clears alert.
+ * @function
+ */
+export const clearAlert = () => {
+
+  if (timeoutId) {
+    clearTimeout(timeoutId)
+  }
+
+  return {
+    type: alertConstants.CLEAR,
+  }
+}</code></pre>
+        </article>
+    </section>
 
 
 

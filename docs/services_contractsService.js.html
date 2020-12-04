@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: components/LandingPage/LandingPage</title>
+    <title>JSDoc: Source: services/contractsService.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,133 +17,60 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: components/LandingPage/LandingPage</h1>
+    <h1 class="page-title">Source: services/contractsService.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>The main landing page component.
-Container for LogInForm and SignUpForm.</p></div>
-        
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_LandingPage_index.js.html">components/LandingPage/index.js</a>, <a href="components_LandingPage_index.js.html#line20">line 20</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Contract requests to backend
+ * @module
+ */
+import axios from 'axios'
+import { loadUser } from '../utils/storage'
+
+const baseUrl = 'http://localhost:3001/api'
+
+/**
+ * helper function for setting up request header
+ * @function
+ */
+const authHeader = () => {
+  return {
+    headers: { 'x-access-token': `${loadUser().token}` }
+  }
+}
+
+/**
+ * Gets workers or businesses by name (LIKE behavior)
+ * @function
+ * @param {string} input - input that is searched
+ * @param {string} searchType - determines if workers or businesses are searched
+ */
+const searchUsers = async (input, searchType) => {
+  try {
+    switch (searchType) {
+      case 'worker':
+        return await axios.get(`${baseUrl}/users?name=${input}`, authHeader())
+      case 'business':
+        return await axios.get(`${baseUrl}/businesses?name=${input}`, authHeader())
+      default:
+        return Promise.reject({ status: 500 })
+    }
+  } catch (error) {
+    return Promise.reject(error.response)
+  }
+}
+
+export default {
+  searchUsers
+}</code></pre>
+        </article>
+    </section>
 
 
 

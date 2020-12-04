@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: components/LandingPage/LandingPage</title>
+    <title>JSDoc: Source: utils/storage.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,133 +17,62 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: components/LandingPage/LandingPage</h1>
+    <h1 class="page-title">Source: utils/storage.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>The main landing page component.
-Container for LogInForm and SignUpForm.</p></div>
-        
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_LandingPage_index.js.html">components/LandingPage/index.js</a>, <a href="components_LandingPage_index.js.html#line20">line 20</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Stores, loads and removes user's information (email, name, token and role) from localStorage
+ * @module utils/storage
+ */
+const storageKey = 'loggedInnoAppUser'
+
+/**
+ * Stores user's information to localStorage
+ * @function
+ * @param {Object} user - user information containing (email, name, token and role)
+ */
+export const saveUser = (user) => {
+  try {
+    const serializedUser = JSON.stringify(user)
+    localStorage.setItem(storageKey, serializedUser)
+  } catch (err) {
+    console.error('storage print\n', err)
+  }
+}
+
+/**
+ * Loads user's information from localStorage
+ * @function
+ */
+export const loadUser = () => {
+  try {
+    const serializedUser = localStorage.getItem(storageKey)
+    if (serializedUser === null) {
+      return undefined
+    }
+    return JSON.parse(serializedUser)
+  } catch (err) {
+    localStorage.removeItem(storageKey)
+    console.error('storage print\n', err)
+    return undefined
+  }
+}
+
+/**
+ * Removes user's information from localStorage.
+ * Used for loggin out user
+ * @function
+ */
+export const logoutUser = () =>
+  localStorage.removeItem(storageKey)</code></pre>
+        </article>
+    </section>
 
 
 

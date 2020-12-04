@@ -1,5 +1,14 @@
+/**
+ * Stores, loads and removes user's information (email, name, token and role) from localStorage
+ * @module utils/storage
+ */
 const storageKey = 'loggedInnoAppUser'
 
+/**
+ * Stores user's information to localStorage
+ * @function
+ * @param {Object} user - user information containing (email, name, token and role)
+ */
 export const saveUser = (user) => {
   try {
     const serializedUser = JSON.stringify(user)
@@ -9,6 +18,10 @@ export const saveUser = (user) => {
   }
 }
 
+/**
+ * Loads user's information from localStorage
+ * @function
+ */
 export const loadUser = () => {
   try {
     const serializedUser = localStorage.getItem(storageKey)
@@ -23,5 +36,10 @@ export const loadUser = () => {
   }
 }
 
+/**
+ * Removes user's information from localStorage.
+ * Used for loggin out user
+ * @function
+ */
 export const logoutUser = () =>
   localStorage.removeItem(storageKey)
