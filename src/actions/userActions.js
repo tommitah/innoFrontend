@@ -1,7 +1,7 @@
-import userService from '../_services/userService'
-import { saveUser, logoutUser } from '../_utils/storage'
-import history from '../_utils/history'
-import userConstants from '../_constants/userConstants'
+import userService from '../services/userService'
+import { saveUser, logoutUser } from '../utils/storage'
+import history from '../utils/history'
+import userConstants from '../constants/userConstants'
 import { setAlert } from './alertActions'
 
 export const login = (credentials, role, from) => {

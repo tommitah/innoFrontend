@@ -1,5 +1,5 @@
-import { loadUser } from '../_utils/storage'
-import userConstants from '../_constants/userConstants'
+import { loadUser } from '../utils/storage'
+import userConstants from '../constants/userConstants'
 
 const userData = loadUser()
 const initialState = userData ? { loggedIn: true, data: userData } : { loggedIn: false, data: {} }

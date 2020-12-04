@@ -1,4 +1,4 @@
-import alertConstants from '../_constants/alertConstants'
+import alertConstants from '../constants/alertConstants'
 
 let timeoutId
 

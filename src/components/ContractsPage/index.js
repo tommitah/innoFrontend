@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { me } from '../../_actions/userActions'
-import contractsService from '../../_services/contractsService'
+import { me } from '../../actions/userActions'
+import contractsService from '../../services/contractsService'
 
 import PageLoading from '../PageLoading'
 import UserSearch from './UserSearch'
@@ -19,6 +19,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 /**
+ * demo version, currently only retrieves workers and businesses by name
+ *
  * TODO:
  * - Displays all the current businesscontracts, including pending ones (agency view, business view, worker view).
  * - Creates businesscontracts with businesses and workers (agency view).

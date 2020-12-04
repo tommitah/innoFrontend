@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import contractsService from '../../_services/contractsService'
+import contractsService from '../../services/contractsService'
 
 import WorkerSearch from './WorkerSearch'
 import SearchTable from './SearchTable'
@@ -21,6 +21,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 /**
+ * demo version
+ *
  * TODO:
  * - Displays all the current workers that agency has a businesscontract with (agency view).
  * - Displays all the current workcontracts that agency has made (agency view).

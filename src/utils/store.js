@@ -1,7 +1,7 @@
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
-import userReducer from '../_reducers/userReducer'
-import alertReducer from '../_reducers/alertReducer'
+import userReducer from '../reducers/userReducer'
+import alertReducer from '../reducers/alertReducer'
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 

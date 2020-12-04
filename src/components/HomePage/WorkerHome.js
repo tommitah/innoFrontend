@@ -1,6 +1,4 @@
-import React, { useState }  from 'react'
-import PropTypes from 'prop-types'
-
+import React, { useState } from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -22,7 +20,6 @@ import {
   Assignment as AssignmentIcon,
   EmojiEmotions as InsertEmoticonIcon,
   SentimentVerySatisfied as SentimentVerySatisfiedIcon,
-  MoodBad as MoodbadIcon,
   SentimentSatisfied as SentimentSatisfiedIcon,
   SentimentDissatisfied as SentimentDissatisfiedIcon,
   SentimentVeryDissatisfied as SentimentVeryDissatisfiedIcon,
@@ -33,7 +30,7 @@ const CompanyHome = () => {
   const [open, setOpen] = useState(false)
 
   const handleClickDialog = () => {
-    if(open) {
+    if (open) {
       setOpen(false)
     }
     else {

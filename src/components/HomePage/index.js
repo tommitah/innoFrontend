@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { me } from '../../_actions/userActions'
-import Role from '../../_utils/role'
+import { me } from '../../actions/userActions'
+import Role from '../../utils/role'
 
 import WorkerHome from './WorkerHome'
 import CompanyHome from './CompanyHome'

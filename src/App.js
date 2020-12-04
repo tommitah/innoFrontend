@@ -11,8 +11,8 @@ import PrivateRoute from './components/PrivateRoute'
 import Drawer from './components/Drawer'
 import AppBar from './components/AppBar'
 
-import { clearAlert } from './_actions/alertActions'
-import Role from './_utils/role'
+import { clearAlert } from './actions/alertActions'
+import Role from './utils/role'
 
 import {
   CssBaseline,

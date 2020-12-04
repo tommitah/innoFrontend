@@ -6,8 +6,8 @@ import { Provider } from 'react-redux'
 import './i18nextInit'
 
 import App from './App'
-import store from './_utils/store'
-import history from './_utils/history'
+import store from './utils/store'
+import history from './utils/history'
 
 import './index.css'
 

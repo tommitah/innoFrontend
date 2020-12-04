@@ -4,7 +4,7 @@ import { Link as RouterLink, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
-import { login, signup } from '../../_actions/userActions'
+import { login, signup } from '../../actions/userActions'
 
 import SignUpForm from './SignUpForm'
 import LogInForm from './LogInForm'

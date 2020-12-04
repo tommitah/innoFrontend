@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { loadUser } from '../_utils/storage'
-import Role from '../_utils/role'
+import { loadUser } from '../utils/storage'
+import Role from '../utils/role'
 
 const baseUrl = 'http://localhost:3001/api'
 
