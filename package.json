@@ -3,7 +3,8 @@
   "jest": {
     "coverageReporters": [
       "text",
-      "cobertura"
+      "cobertura",
+      "html"
     ]
   },
   "version": "0.1.0",

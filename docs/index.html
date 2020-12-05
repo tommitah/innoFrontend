@@ -43,9 +43,70 @@
 
 
     <section>
-        <article><p>This project was bootstrapped with <a href="https://github.com/facebook/create-react-app">Create React App</a>.</p>
-<h2>Available Scripts</h2>
+        <article><h1>Kestävä keikkatyö</h1>
+<h2>Table of contents</h2>
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#setup">Setup</a>
+<ul>
+<li><a href="#cloning">Cloning</a></li>
+<li><a href="#vscode">VSCode</a></li>
+<li><a href="#running-locally">Running locally</a></li>
+</ul>
+</li>
+<li><a href="#available-scripts">Available scripts</a>
+<ul>
+<li><a href="#create-react-app-scripts">Create React App scripts</a>
+<ul>
+<li><a href="#npm-start">npm start</a></li>
+<li><a href="#npm-test">npm test</a></li>
+<li><a href="#npm-run-build">npm run build</a></li>
+<li><a href="#npm-run-eject">npm run eject</a></li>
+</ul>
+</li>
+<li><a href="#npm-run-lint">npm run lint</a></li>
+<li><a href="#npm-run-lint-and-fix">npm run lint-and-fix</a></li>
+<li><a href="#npm-run-docs">npm run docs</a></li>
+</ul>
+</li>
+<li><a href="#tests">Tests</a>
+<ul>
+<li><a href="#running-tests-once">Running tests once</a></li>
+<li><a href="#creating-coverage-report">Creating coverage report</a></li>
+</ul>
+</li>
+</ul>
+<h2>About</h2>
+<p>This project is initialized with Create React App. It uses React, Redux for state management, React Router Dom for routing, Material UI for styling and Formik for building forms.</p>
+<p>All the dependencies can be seen in the package.json file.</p>
+<h2>Setup</h2>
+<p>To run this project locally you need:</p>
+<ul>
+<li>Node.js (lts)</li>
+<li>Git</li>
+<li>VSCode</li>
+<li>Backend with MongoDB connection</li>
+</ul>
+<h3>Cloning</h3>
+<p>Start by downloading the zip file of this project from GitHub.</p>
+<p>Or if you have Git installed</p>
+<pre class="prettyprint source"><code>$ git clone https://github.com/Inno-Kestava-Keikkatyo/innoFrontend.git
+</code></pre>
+<h3>VSCode</h3>
+<p>You can install Visual Studio Code from <a href="https://code.visualstudio.com/">here</a>.</p>
+<p>After the installation is done, download the <a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint extension</a> to enable linting and allow the execution to run in your workspace.</p>
+<p>You don't have to use Visual studio code, any text editor with ESLint support should be fine.</p>
+<h3>Running locally</h3>
+<p>To run this project locally:</p>
+<pre class="prettyprint source"><code>$ cd (your_path)/innoFrontend
+$ npm install
+$ npm start
+</code></pre>
+<p>You also need to have the <a href="https://github.com/Inno-Kestava-Keikkatyo/innoBackend">backend</a> set up and running. The backend needs to be run in port 3001 and it also requires MongoDB database connection.</p>
+<h2>Available scripts</h2>
 <p>In the project directory, you can run:</p>
+<h3>Create React App scripts</h3>
+<p>This project was bootstrapped with <a href="https://github.com/facebook/create-react-app">Create React App</a>.</p>
 <h3><code>npm start</code></h3>
 <p>Runs the app in the development mode.<br />
 Open <a href="http://localhost:3000">http://localhost:3000</a> to view it in the browser.</p>
@@ -65,21 +126,26 @@ Your app is ready to be deployed!</p>
 <p>If you aren’t satisfied with the build tool and configuration choices, you can <code>eject</code> at any time. This command will remove the single build dependency from your project.</p>
 <p>Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except <code>eject</code> will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.</p>
 <p>You don’t have to ever use <code>eject</code>. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.</p>
-<h2>Learn More</h2>
-<p>You can learn more in the <a href="https://facebook.github.io/create-react-app/docs/getting-started">Create React App documentation</a>.</p>
-<p>To learn React, check out the <a href="https://reactjs.org/">React documentation</a>.</p>
-<h3>Code Splitting</h3>
-<p>This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting</p>
-<h3>Analyzing the Bundle Size</h3>
-<p>This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size</p>
-<h3>Making a Progressive Web App</h3>
-<p>This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app</p>
-<h3>Advanced Configuration</h3>
-<p>This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration</p>
-<h3>Deployment</h3>
-<p>This section has moved here: https://facebook.github.io/create-react-app/docs/deployment</p>
-<h3><code>npm run build</code> fails to minify</h3>
-<p>This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify</p></article>
+<h3><code>npm run lint</code></h3>
+<p>Runs the linter once and shows any linting errors in the project folder.</p>
+<p>Linting rules can be found in the &quot;.eslintrc&quot; file.</p>
+<p>You don't have to run this command when you have ESLint extension enabled, linting errors should be highlighted automatically.</p>
+<h3><code>npm run lint-and-fix</code></h3>
+<p>Runs the linter once and fixes all the linting errors in this project folder.</p>
+<h3><code>npm run docs</code></h3>
+<p>Creates this projects JSDoc documentation. Destination folder is called docs and it can be found in the root of this project.</p>
+<p>JSDoc configuration can be changed in the jsdoc.json file.</p>
+<h2>Tests</h2>
+<p>Tests are created using Jest with <a href="https://testing-library.com/docs/react-testing-library/intro/">React Testing Library</a> for React components.</p>
+<h3>Running tests once</h3>
+<p>To run the tests once, in this project directory:</p>
+<pre class="prettyprint source"><code>$ CI=true npm test
+</code></pre>
+<h3>Creating coverage report</h3>
+<p>To create a coverage report, in this project directory:</p>
+<pre class="prettyprint source"><code>$ CI=true npm test -- --coverage
+</code></pre>
+<p>A coverage report is created in the coverage folder of this project. Coverage folder contains both HTML and Cobertura reports.</p></article>
     </section>
 
 
@@ -96,7 +162,7 @@ Your app is ready to be deployed!</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Fri Dec 04 2020 14:10:17 GMT+0200 (GMT+02:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Dec 05 2020 12:49:48 GMT+0200 (GMT+02:00)
 </footer>
 
 <script> prettyPrint(); </script>
