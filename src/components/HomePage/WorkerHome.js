@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -36,10 +37,6 @@ const CompanyHome = () => {
     else {
       setOpen(true)
     }
-  }
-
-  const handlePageChange = () => {
-    window.location.href = '/home'
   }
 
   const useStyles = makeStyles(({
@@ -102,33 +99,41 @@ const CompanyHome = () => {
       </Card>
       <Grid spacing={8} justify="space-around" container direction="row" mt={5} className={classes.alignItemsAndJustifyContent}>
         <Grid item xs>
-          <AssessmentIcon onClick={handlePageChange}
-            className={classes.clickableIcon}>
-          </AssessmentIcon>
+          <Link to="/process">
+            <AssessmentIcon
+              className={classes.clickableIcon}>
+            </AssessmentIcon>
+          </Link>
           <Grid item className={classes.textAlignAssignment}>
             <Typography variant="body1">Perehdytys</Typography>
           </Grid>
         </Grid>
         <Grid item xs>
-          <AssignmentIcon onClick={handlePageChange}
-            className={classes.clickableIcon}>
-          </AssignmentIcon>
+          <Link to="/tasks">
+            <AssignmentIcon
+              className={classes.clickableIcon}>
+            </AssignmentIcon>
+          </Link>
           <Grid item className={classes.textAlignAssignment}>
             <Typography variant="body1">Tehtävä-lista</Typography>
           </Grid>
         </Grid>
         <Grid item xs>
-          <InsertDriveFileIcon onClick={handlePageChange}
-            className={classes.clickableIcon}>
-          </InsertDriveFileIcon>
+          <Link to="/documents">
+            <InsertDriveFileIcon
+              className={classes.clickableIcon}>
+            </InsertDriveFileIcon>
+          </Link>
           <Grid item className={classes.textAlignAssignment}>
             <Typography variant="body1">Asiakirjat</Typography>
           </Grid>
         </Grid>
         <Grid item xs>
-          <MessageIcon onClick={handlePageChange}
-            className={classes.clickableIcon}>
-          </MessageIcon>
+          <Link to="/messages">
+            <MessageIcon
+              className={classes.clickableIcon}>
+            </MessageIcon>
+          </Link>
           <Grid item className={classes.textAlignAssignment}>
             <Typography variant="body1">Viestit</Typography>
           </Grid>
@@ -146,7 +151,7 @@ const CompanyHome = () => {
           open={open}
           onClose={handleClickDialog}
         >
-          <DialogTitle>Tämänhetkinen fiilis:</DialogTitle>
+          <DialogTitle className>Fiilismittari</DialogTitle>
           <DialogContent>
             <SentimentVerySatisfiedIcon onClick={handleClickDialog}
               className={classes.clickableIconGreen}>

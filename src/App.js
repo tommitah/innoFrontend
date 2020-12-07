@@ -8,6 +8,10 @@ import ProfilePage from './components/ProfilePage'
 import WorkersPage from './components/WorkersPage'
 import ContractsPage from './components/ContractsPage'
 import PrivateRoute from './components/PrivateRoute'
+import ProcessPage from './components/ProcessPage'
+import TasksPage from './components/TaskPage'
+import MessagePage from './components/MessagePage'
+import DocumentPage from './components/DocumentPage'
 import Drawer from './components/Drawer'
 import AppBar from './components/AppBar'
 
@@ -83,6 +87,34 @@ const App = () => {
           roles={[Role.Business, Role.Agency]}
           loggedIn={loggedIn}>
           <WorkersPage />
+        </PrivateRoute>
+        <PrivateRoute
+          path="/process"
+          role={data.role}
+          roles={[Role.Worker]}
+          loggedIn={loggedIn}>
+          <ProcessPage />
+        </PrivateRoute>
+        <PrivateRoute
+          path="/tasks"
+          role={data.role}
+          roles={[Role.Worker, Role.Agency, Role.Business]}
+          loggedIn={loggedIn}>
+          <TasksPage />
+        </PrivateRoute>
+        <PrivateRoute
+          path="/messages"
+          role={data.role}
+          roles={[Role.Worker, Role.Agency, Role.Business]}
+          loggedIn={loggedIn}>
+          <MessagePage />
+        </PrivateRoute>
+        <PrivateRoute
+          path="/documents"
+          role={data.role}
+          roles={[Role.Worker, Role.Agency, Role.Business]}
+          loggedIn={loggedIn}>
+          <DocumentPage />
         </PrivateRoute>
         <Redirect from="*" to="/home" />
       </Switch>

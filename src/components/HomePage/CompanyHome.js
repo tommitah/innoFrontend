@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -15,11 +16,6 @@ import { Message as MessageIcon,
 } from '@material-ui/icons'
 
 const CompanyHome = () => {
-
-  const handlePageChange = () => {
-    window.location.href = '/home'
-  }
-
   const useStyles = makeStyles(({
     clickableIcon: {
       color: 'black',
@@ -66,33 +62,41 @@ const CompanyHome = () => {
       </Card>
       <Grid spacing={8} justify="space-around" container direction="row" mt={5} className={classes.alignItemsAndJustifyContent}>
         <Grid item xs>
-          <AccessibilityIcon onClick={handlePageChange}
-            className={classes.clickableIcon}>
-          </AccessibilityIcon>
+          <Link to="/workers">
+            <AccessibilityIcon
+              className={classes.clickableIcon}>
+            </AccessibilityIcon>
+          </Link>
           <Grid item className={classes.textAlignAssignment}>
             <Typography variant="body1">Työntekijät</Typography>
           </Grid>
         </Grid>
         <Grid item xs>
-          <AssignmentIcon onClick={handlePageChange}
-            className={classes.clickableIcon}>
-          </AssignmentIcon>
+          <Link to="/tasks">
+            <AssignmentIcon
+              className={classes.clickableIcon}>
+            </AssignmentIcon>
+          </Link>
           <Grid item className={classes.textAlignAssignment}>
             <Typography variant="body1">Tehtävä-lista</Typography>
           </Grid>
         </Grid>
         <Grid item xs>
-          <InsertDriveFileIcon onClick={handlePageChange}
-            className={classes.clickableIcon}>
-          </InsertDriveFileIcon>
+          <Link to="/documents">
+            <InsertDriveFileIcon
+              className={classes.clickableIcon}>
+            </InsertDriveFileIcon>
+          </Link>
           <Grid item className={classes.textAlignAssignment}>
             <Typography variant="body1">Asiakirjat</Typography>
           </Grid>
         </Grid>
         <Grid item xs>
-          <MessageIcon onClick={handlePageChange}
-            className={classes.clickableIcon}>
-          </MessageIcon>
+          <Link to="/messages">
+            <MessageIcon
+              className={classes.clickableIcon}>
+            </MessageIcon>
+          </Link>
           <Grid item className={classes.textAlignAssignment}>
             <Typography variant="body1">Viestit</Typography>
           </Grid>
