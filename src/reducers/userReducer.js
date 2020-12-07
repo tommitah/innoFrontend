@@ -15,7 +15,6 @@ const initialState = userData ? { loggedIn: true, data: userData } : { loggedIn:
  * @param {Object} action - dispatched action
  */
 const userReducer = (state = initialState, action) => {
-  console.log('userReducer', action)
   switch (action.type) {
     case userConstants.REQUEST:
       return {
